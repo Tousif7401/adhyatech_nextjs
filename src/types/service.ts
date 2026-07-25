@@ -23,7 +23,7 @@ export interface Service {
 
   tags: string[];
 
-  image: String;
+  image: string;
 
   features: string[];
 
