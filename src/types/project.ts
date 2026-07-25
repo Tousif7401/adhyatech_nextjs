@@ -1,4 +1,7 @@
 export interface Project {
+
+  site_url?: string | null;
+is_live?: boolean;
   id: number;
 
   slug: string;
@@ -47,7 +50,7 @@ export interface Project {
 
   deliverables?: string[];
 
-  image: String;
+  image: string;
 
   featured: boolean;
 
@@ -61,5 +64,3 @@ export interface PortfolioResponse {
   projects: Project[];
   categories: string[];
 }
-site_url?: string | null;
-is_live?: boolean;

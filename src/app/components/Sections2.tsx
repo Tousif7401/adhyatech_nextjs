@@ -1,5 +1,5 @@
 'use client'
-import BrowserFrame from '@app/components/BrowserFrame'
+import BrowserFrame from '@/app/components/BrowserFrame'
 import { useMemo, useState } from 'react'
 import Link from 'next/link';
 

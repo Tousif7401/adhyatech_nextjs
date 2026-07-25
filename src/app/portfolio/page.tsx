@@ -1,4 +1,4 @@
-import BrowserFrame from '@app/components/BrowserFrame'
+import BrowserFrame from '@/app/components/BrowserFrame'
 import UtilityBar from '../components/UtilityBar'
 import Header from '../components/Header'
 import PageHero from '../components/PageHero'
