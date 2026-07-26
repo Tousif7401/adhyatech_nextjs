@@ -97,7 +97,7 @@ export default function Hero({
   return (
     <section className="hero" id="hero" ref={heroRef}>
       {/* 3D Particle Background */}
-      <WovenParticles particleCount={15000} />
+      <WovenParticles particleCount={6000} />
 
       <div className="hero__mesh" aria-hidden="true" style={{ zIndex: -1 }}> <div className="hero__mesh-blob"></div> <div className="hero__mesh-blob"></div> <div className="hero__mesh-blob"></div> <div className="hero__mesh-blob"></div> </div>
 
@@ -138,8 +138,8 @@ export default function Hero({
             </p>
 
             <div className="hero__actions">
-              <a href="#work" className="btn btn--red">See our work <span className="arrow">↗</span></a>
-              <a href="#contact" className="btn btn--ghost-d">Start a project</a>
+              <a href="/portfolio" className="btn btn--red">See our work <span className="arrow">↗</span></a>
+              <a href="/quote" className="btn btn--ghost-d">Start a project</a>
             </div>
           </div>
         </div>

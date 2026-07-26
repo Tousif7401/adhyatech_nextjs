@@ -149,7 +149,7 @@ export function Alumnyo() {
           </ul>
           <div className="alumnyo__cta">
             <a href="https://alumnyo.com" className="btn btn--red">Visit Alumnyo.com <span className="arrow">↗</span></a>
-            <a href="#alumnyo-demo" className="btn btn--ghost-d">Book a demo</a>
+            <a href="/contact" className="btn btn--ghost-d">Book a demo</a>
           </div>
         </div>
 
@@ -204,8 +204,8 @@ export function Osciva() {
             ))}
           </ul>
           <div className="osciva__cta">
-            <a href="https://osciva.ai" className="btn btn--red">Visit Osciva.ai <span className="arrow">↗</span></a>
-            <a href="#ai-call" className="btn btn--ghost-d">Book an AI strategy call</a>
+            <a href="https://osciva.io" className="btn btn--red">Visit Osciva.io <span className="arrow">↗</span></a>
+            <a href="/contact" className="btn btn--ghost-d">Book an AI strategy call</a>
           </div>
         </div>
         <div className="osciva__visual" data-aos="fade-up" data-aos-delay="200" aria-hidden="true">

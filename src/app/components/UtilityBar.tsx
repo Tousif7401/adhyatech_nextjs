@@ -9,14 +9,14 @@ export default function UtilityBar() {
           <span className="sep">|</span>
           <span>Ballari, Karnataka · Serving globally</span>
           <span className="sep">|</span>
-          <span className="govt-badge">★ Govt of Karnataka empanelled</span>
+          <span className="govt-badge">★ Govt of Karnataka trusted</span>
         </div>
         <div className="utility__right">
-          <a href="#careers">Careers</a>
+          <a href="/careers">Careers</a>
           <span className="sep">|</span>
           <a href="mailto:hello@adyatech.com">hello@adyatech.com</a>
           <span className="sep">|</span>
-          <a href="tel:+910000000000">+91 00000 00000</a>
+          <a href="tel:+918392359873">+91 8392 359873</a>
         </div>
       </div>
     </div>

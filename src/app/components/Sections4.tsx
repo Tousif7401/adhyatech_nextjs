@@ -226,13 +226,20 @@ export function Footer() {
       <div className="footer__giant"><span>ADYATECH</span></div>
 
       <div className="container footer__bottom">
-        <span>© {new Date().getFullYear()} Adyatech Solutions LLP · Ballari, Karnataka, India · CIN: ACH-5622</span>
-        <div className="footer__social">
-          {[['in', 'LinkedIn'], ['gh', 'GitHub'], ['dr', 'Dribbble'], ['𝕏', 'X / Twitter']].map(([icon, label]) => (
-            <Link key={label} href="#" aria-label={label}>{icon}</Link>
-          ))}
-        </div>
-      </div>
+  <span>© {new Date().getFullYear()} Adyatech Solutions LLP · Ballari, Karnataka, India · CIN: ACH-5622</span>
+  <div className="footer__legal">
+    <Link href="/terms">Terms</Link>
+    <Link href="/privacy">Privacy</Link>
+    <Link href="/cookies">Cookies</Link>
+    <Link href="/disclaimer">Disclaimer</Link>
+    <Link href="/refund">Refund</Link>
+  </div>
+  <div className="footer__social">
+    {[['in', 'LinkedIn'], ['gh', 'GitHub'], ['dr', 'Dribbble'], ['𝕏', 'X / Twitter']].map(([icon, label]) => (
+      <Link key={label} href="#" aria-label={label}>{icon}</Link>
+    ))}
+  </div>
+</div>
     </footer>
   )
 }
