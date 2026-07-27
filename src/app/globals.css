@@ -184,7 +184,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -193,7 +193,7 @@ body {
   line-height: 1.6;
   background: var(--ink);
   color: #F5F2EA;
-  overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
   max-width: 100vw;
 }
@@ -1560,8 +1560,8 @@ HERO+MOTION GRAPHICS → HTML SECTION 3 Layered: gradient mesh+particles+cursor 
 }
 
 .hero__actions .btn {
-  padding: 12px 22px;
-  font-size: 13px;
+  padding: 15px 28px;
+  font-size: 15px;
   gap: 8px;
 }
 
@@ -6450,4 +6450,76 @@ a:hover > .shot,
   .footer__legal {
     justify-content: center;
   }
+}
+/* ============================================================
+   HEADER CTA — desktop / mobile swap (final, overrides earlier)
+   ============================================================ */
+.header__cta-desktop { display: inline-flex; }
+.header__cta-mobile  { display: none; }
+
+@media (max-width: 900px) {
+  .header__cta-desktop { display: none !important; }
+  .header__cta-mobile {
+    display: inline-flex !important;
+    padding: 8px 14px;
+    font-size: 13px;
+    white-space: nowrap;
+    margin-right: 8px;
+  }
+}
+/* ============================================================
+   HAMBURGER — gold accent (final, overrides earlier .hamburger)
+   ============================================================ */
+.hamburger {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: transparent;
+  border: 1px solid rgba(245, 242, 234, 0.15);
+  cursor: pointer;
+  position: relative;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.25s, border-color 0.25s;
+}
+.hamburger:hover {
+  background: rgba(245, 242, 234, 0.05);
+  border-color: rgba(245, 242, 234, 0.35);
+}
+
+.hamburger span {
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.2s, background 0.3s, width 0.3s, margin 0.3s;
+}
+
+/* three bars — middle one is brand gold */
+.hamburger span:nth-child(1) { background: var(--cream, #F5F2EA); transform: translateY(-6px); }
+.hamburger span:nth-child(2) { background: var(--gold, #E8B547); width: 14px; margin-left: -6px; }
+.hamburger span:nth-child(3) { background: var(--cream, #F5F2EA); transform: translateY(6px); }
+
+/* hover — gold bar extends to full width */
+.hamburger:hover span:nth-child(2) { width: 20px; margin-left: 0; }
+
+/* open — collapses to a gold X */
+.hamburger.is-open span:nth-child(1) { transform: rotate(45deg);  background: var(--gold, #E8B547); }
+.hamburger.is-open span:nth-child(2) { opacity: 0; }
+.hamburger.is-open span:nth-child(3) { transform: rotate(-45deg); background: var(--gold, #E8B547); }
+@media (max-width: 900px) {
+  .hamburger { display: flex !important; }
+}
+.osciva-graph {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.osciva-graph canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-
+import OscivaAgentGraph from '@/app/components/OscivaAgentGraph'
 import Link from "next/link";
 import { Product } from "@/types/product";
 
@@ -209,7 +209,7 @@ export function Osciva() {
           </div>
         </div>
         <div className="osciva__visual" data-aos="fade-up" data-aos-delay="200" aria-hidden="true">
-          <div className="osciva-orb"></div>
+          <OscivaAgentGraph />
         </div>
       </div>
     </section>

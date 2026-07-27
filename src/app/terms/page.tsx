@@ -7,7 +7,7 @@ import LegalPage, { type LegalSection } from '@/app/legal/LegalPage'
 export const metadata: Metadata = {
   title: 'Terms of Service — Adyatech Solutions',
   description:
-    'The terms governing use of the Adyatech Solutions website and engagements with us.',
+    'The terms governing use of the Adyatech Solutions website and engagements with us',
 }
 
 const sections: LegalSection[] = [
