@@ -14,3 +14,8 @@ out/
 
 # typescript
 *.tsbuildinfo
+
+# claude agents & skills
+.agents/
+.claude/
+skills-lock.json

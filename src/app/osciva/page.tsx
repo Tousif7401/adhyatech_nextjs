@@ -1,6 +1,7 @@
 import UtilityBar from '../components/UtilityBar'
 import Header from '../components/Header'
 import { Footer, BigCTA } from '../components/Sections4'
+import OscivaHero from '@/components/OscivaHero'
 
 import Link from "next/link";
 
@@ -47,7 +48,7 @@ const oscivaFeatures = [
 const oscivaCaseStudies = [
   { name: 'Nandi Honda', metric: 'Lead gen assistant', body: 'Built a Ai assistant that captures leads for Test drives, service, insurance with 87% accuracy..' },
   { name: 'Shree Medha College', metric: '200 chat requests/day', body: 'RAG-powered Ai assistant that processes 200 chat requests/day. Regarding admissions, library, examinations, learning modules.' },
-  {/* name: 'Helio Health', metric: 'Multilingual voice', body: 'Voice AI for appointment booking in Kannada, Hindi, and English. Handles 60% of inbound calls without human handoff.' */},
+  // { name: 'Helio Health', metric: 'Multilingual voice', body: 'Voice AI for appointment booking in Kannada, Hindi, and English. Handles 60% of inbound calls without human handoff.' },
 ]
 
 const pricing = [
@@ -108,6 +109,10 @@ export default async function OscivaPage() {
       <Header />
       <main>
         <section className="product-hero is-osciva">
+          <div className="product-hero__mesh" aria-hidden="true">
+            <div className="product-hero__mesh-blob"></div>
+            <div className="product-hero__mesh-blob"></div>
+          </div>
           <div className="container">
             <div className="product-hero__inner">
               <div>
@@ -121,9 +126,7 @@ export default async function OscivaPage() {
                   <Link href="https://osciva.io" className="btn btn--ghost-d">Visit osciva.io</Link>
                 </div>
               </div>
-              <div className="product-hero__visual" aria-hidden="true">
-                <div className="osciva-big-orb"></div>
-              </div>
+              <OscivaHero />
             </div>
           </div>
         </section>
