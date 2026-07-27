@@ -344,8 +344,8 @@
 }
 
 /* ── Osciva / Alumnyo Product Pages ── */
-.product-hero { padding: clamp(80px,10vw,140px) 0 clamp(60px,8vw,100px); position: relative; overflow: hidden; }
-.product-hero.is-osciva { background: var(--brand-slate-3); }
+.product-hero { padding: clamp(120px,14vw,200px) 0 clamp(100px,12vw,140px); position: relative; overflow: hidden; }
+.product-hero.is-osciva { background: var(--ink); }
 .product-hero.is-alumnyo { background: var(--ink); }
 .product-hero__inner {
   display: grid;
