@@ -1,13 +1,10 @@
-import UtilityBar from '@/app/components/UtilityBar'
-import Header from '@/app/components/Header'
-import { Footer } from '@/app/components/Sections4'
 import type { Metadata } from 'next'
 import LegalPage, { type LegalSection } from '@/app/legal/LegalPage'
 
 export const metadata: Metadata = {
   title: 'Terms of Service — Adyatech Solutions',
   description:
-    'The terms governing use of the Adyatech Solutions website and engagements with us',
+    'The terms governing use of the Adyatech Solutions website and engagements with us.',
 }
 
 const sections: LegalSection[] = [
@@ -32,16 +29,11 @@ const sections: LegalSection[] = [
 
 export default function TermsPage() {
   return (
-    <>
-      <UtilityBar />
-      <Header />
-      <LegalPage
-        title="Terms of Service"
-        subtitle="Terms of Service"
-        intro="These terms govern your use of the Adyatech Solutions website and any engagement you enter into with us. Please read them carefully."
-        sections={sections}
-      />
-      <Footer />
-    </>
+    <LegalPage
+      title="Terms of Service"
+      subtitle="Terms of Service"
+      intro="These terms govern your use of the Adyatech Solutions website and any engagement you enter into with us. Please read them carefully."
+      sections={sections}
+    />
   )
 }

@@ -1,8 +1,5 @@
 import type { Metadata } from 'next'
 import LegalPage, { type LegalSection } from '@/app/legal/LegalPage'
-import UtilityBar from '@/app/components/UtilityBar'
-import Header from '@/app/components/Header'
-import { Footer } from '@/app/components/Sections4'
 
 export const metadata: Metadata = {
   title: 'Disclaimer — Adyatech Solutions',
@@ -28,16 +25,11 @@ const sections: LegalSection[] = [
 
 export default function DisclaimerPage() {
   return (
-    <>
-      <UtilityBar />
-      <Header />
-      <LegalPage
-        title="Disclaimer"
-        subtitle="Disclaimer"
-        intro="The information on this website is provided in good faith and for general information only. This disclaimer sets out the terms on which you rely on it."
-        sections={sections}
-      />
-      <Footer />
-    </>
+    <LegalPage
+      title="Disclaimer"
+      subtitle="Disclaimer"
+      intro="The information on this website is provided in good faith and for general information only. This disclaimer sets out the terms on which you rely on it."
+      sections={sections}
+    />
   )
 }

@@ -1,8 +1,5 @@
 import type { Metadata } from 'next'
 import LegalPage, { type LegalSection } from '@/app/legal/LegalPage'
-import UtilityBar from '@/app/components/UtilityBar'
-import Header from '@/app/components/Header'
-import { Footer } from '@/app/components/Sections4'
 
 export const metadata: Metadata = {
   title: 'Cookie Policy — Adyatech Solutions',
@@ -46,16 +43,11 @@ const sections: LegalSection[] = [
 
 export default function CookiesPage() {
   return (
-    <>
-      <UtilityBar />
-      <Header />
-      <LegalPage
-        title="Cookie Policy"
-        subtitle="Cookie Policy"
-        intro="This policy explains how adyatech.com uses cookies and similar technologies, and how you can manage them."
-        sections={sections}
-      />
-      <Footer />
-    </>
+    <LegalPage
+      title="Cookie Policy"
+      subtitle="Cookie Policy"
+      intro="This policy explains how adyatech.com uses cookies and similar technologies, and how you can manage them."
+      sections={sections}
+    />
   )
 }

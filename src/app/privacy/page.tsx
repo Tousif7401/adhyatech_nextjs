@@ -1,9 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import LegalPage, { type LegalSection } from '@/app/legal/LegalPage'
-import UtilityBar from '@/app/components/UtilityBar'
-import Header from '@/app/components/Header'
-import { Footer } from '@/app/components/Sections4'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy — Adyatech Solutions',
@@ -36,16 +33,11 @@ const sections: LegalSection[] = [
 
 export default function PrivacyPage() {
   return (
-    <>
-      <UtilityBar />
-      <Header />
-      <LegalPage
-        title="Privacy Policy"
-        subtitle="Privacy Policy"
-        intro="This policy explains what personal information Adyatech Solutions collects, how we use it, and the choices you have. It applies to adyatech.com and our client engagements."
-        sections={sections}
-      />
-      <Footer />
-    </>
+    <LegalPage
+      title="Privacy Policy"
+      subtitle="Privacy Policy"
+      intro="This policy explains what personal information Adyatech Solutions collects, how we use it, and the choices you have. It applies to adyatech.com and our client engagements."
+      sections={sections}
+    />
   )
 }

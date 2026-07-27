@@ -1,8 +1,5 @@
 import type { Metadata } from 'next'
 import LegalPage, { type LegalSection } from '@/app/legal/LegalPage'
-import UtilityBar from '@/app/components/UtilityBar'
-import Header from '@/app/components/Header'
-import { Footer } from '@/app/components/Sections4'
 
 export const metadata: Metadata = {
   title: 'Refund & Cancellation Policy — Adyatech Solutions',
@@ -27,16 +24,11 @@ const sections: LegalSection[] = [
 
 export default function RefundPage() {
   return (
-    <>
-      <UtilityBar />
-      <Header />
-      <LegalPage
-        title="Refund & Cancellation Policy"
-        subtitle="Refund & Cancellation Policy"
-        intro="This policy explains how cancellations and refunds work for project engagements with Adyatech Solutions. For our SaaS products, see the product refund policy."
-        sections={sections}
-      />
-      <Footer />
-    </>
+    <LegalPage
+      title="Refund & Cancellation Policy"
+      subtitle="Refund & Cancellation Policy"
+      intro="This policy explains how cancellations and refunds work for project engagements with Adyatech Solutions. For our SaaS products, see the product refund policy."
+      sections={sections}
+    />
   )
 }
