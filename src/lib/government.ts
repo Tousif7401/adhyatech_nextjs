@@ -5,7 +5,7 @@
 // with fetch calls to Laravel — the rest of the app doesn't change.
 
 import type { GovProject } from '@/types/government'
-import { GOV_PROJECTS } from '@/types/government'
+import { GOV_PROJECTS } from '@/data/government'
 
 export async function getGovProjects(): Promise<GovProject[]> {
   // --- INTEGRATION: replace with a fetch ---
