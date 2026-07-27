@@ -4,7 +4,7 @@
 // Right now it reads the hardcoded array. To integrate, replace the bodies
 // with fetch calls to Laravel — the rest of the app doesn't change.
 
-import type { GovProject } from '@/types/government'
+import { GOV_PROJECTS, type GovProject } from '@/types/government'
 import { GOV_PROJECTS } from '@/data/government'
 
 export async function getGovProjects(): Promise<GovProject[]> {
