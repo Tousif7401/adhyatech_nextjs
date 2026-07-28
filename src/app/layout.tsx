@@ -26,7 +26,7 @@ export default async function RootLayout({
   const settings = await getSettings();
 
   return (
-    <html lang="en" data-theme="dark">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/png" href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/assets/logo/adyatech-logo-light.png`} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
