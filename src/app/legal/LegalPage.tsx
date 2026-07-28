@@ -1,5 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import type { ReactNode } from 'react'
+import { useEffect, useState } from 'react'
 
 export interface LegalSection {
   id: string
@@ -25,10 +28,47 @@ export default function LegalPage({
   intro,
   sections,
 }: LegalPageProps) {
+  const [activeSection, setActiveSection] = useState<string>('')
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      {
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+      }
+    )
+
+    sections.forEach((section) => {
+      const element = document.getElementById(section.id)
+      if (element) {
+        observer.observe(element)
+      }
+    })
+
+    return () => observer.disconnect()
+  }, [sections])
+
   return (
     <main>
       <section className="legal-hero">
+        <div className="legal-hero__mesh" aria-hidden="true">
+          <div className="legal-hero__mesh-blob"></div>
+          <div className="legal-hero__mesh-blob"></div>
+        </div>
         <div className="container">
+          <Link href="/" className="legal-hero__back">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back
+          </Link>
           <div className="legal-hero__crumb">
             <Link href="/">Home</Link> / {title}
           </div>
@@ -44,7 +84,11 @@ export default function LegalPage({
           <nav className="legal-toc">
             <div className="legal-toc__label">On this page</div>
             {sections.map((s) => (
-              <a key={s.id} href={`#${s.id}`}>
+              <a
+                key={s.id}
+                href={`#${s.id}`}
+                className={activeSection === s.id ? 'is-active' : ''}
+              >
                 {s.heading}
               </a>
             ))}
