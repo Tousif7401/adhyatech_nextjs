@@ -75,6 +75,16 @@
   overflow: hidden;
   border-bottom: 1px solid var(--line-d);
 }
+@media (max-width: 768px) {
+  .legal-hero {
+    padding: 0 0 clamp(40px,6vw,60px) !important;
+    margin-top: -8px !important;
+  }
+  .legal-hero__back {
+    margin-bottom: 12px !important;
+    margin-top: 12px !important;
+  }
+}
 .legal-hero__mesh {
   position: absolute; inset: 0;
   pointer-events: none;
@@ -107,6 +117,14 @@
   transition: all 0.2s ease;
   background: rgba(20,20,25,0.8);
   backdrop-filter: blur(10px);
+}
+@media (max-width: 768px) {
+  .legal-hero__back {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin-bottom: 20px;
+  }
 }
 .legal-hero__back:hover {
   color: var(--brand-red);
