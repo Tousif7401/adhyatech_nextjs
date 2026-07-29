@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import OscivaAgentGraph from '@/app/components/OscivaAgentGraph'
+import SphereParticles from '@/components/SphereParticles'
 import Link from "next/link";
 import { Product } from "@/types/product";
 
@@ -178,6 +179,8 @@ export function Alumnyo() {
 }
 
 export function Osciva() {
+  const visualRef = useRef<HTMLDivElement>(null);
+
   return (
     <section className="osciva" id="osciva">
       <div className="container osciva__inner">
@@ -208,8 +211,11 @@ export function Osciva() {
             <a href="/contact" className="btn btn--ghost-d">Book an AI strategy call</a>
           </div>
         </div>
-        <div className="osciva__visual" data-aos="fade-up" data-aos-delay="200" aria-hidden="true">
-          <OscivaAgentGraph />
+        <div ref={visualRef} className="osciva__visual" data-aos="fade-up" data-aos-delay="200" aria-hidden="true" style={{ position: 'relative', width: '100%', height: '100%', maxWidth: '500px', maxHeight: '500px' }}>
+          <div className="product-hero__mesh" style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
+            <div className="product-hero__mesh-blob" style={{ width: '300px', height: '300px', top: '-60px', right: '-40px', opacity: '0.3' }}></div>
+          </div>
+          <SphereParticles rootRef={visualRef} />
         </div>
       </div>
     </section>
@@ -284,6 +290,9 @@ export function GovtBand() {
     <section className="govt-band" id="government">
       <div className="container govt-band__inner">
         <div className="govt-seal" data-aos="zoom-in">
+          <div className="govt-seal__logo">
+            <img src="/assets/logo/karnataka-government.svg" alt="Government of Karnataka emblem" />
+          </div>
           <div className="govt-seal__inner">
             <div className="govt-seal__top">★ Trusted Vendor ★</div>
             <div className="govt-seal__title">Government of <em>Karnataka</em></div>
@@ -308,7 +317,6 @@ export function GovtBand() {
           </ul>
           <div style={{ marginTop: 32, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
             <a href="#govt-projects" className="btn btn--ghost-l">Government project case studies <span className="arrow">↗</span></a>
-            <a href="#enterprise" className="btn btn--ghost-l">Enterprise capabilities deck</a>
           </div>
         </div>
       </div>

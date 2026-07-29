@@ -14,7 +14,7 @@
 }
 .page-hero__inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 900px;
 }
 .page-hero__breadcrumb {
@@ -66,6 +66,40 @@
 }
 .page-hero__mesh-blob:nth-child(1) { width: 500px; height: 500px; background: var(--brand-red); top: -150px; right: -100px; animation: blob-drift 20s ease-in-out infinite; }
 .page-hero__mesh-blob:nth-child(2) { width: 400px; height: 400px; background: var(--brand-slate); bottom: -100px; left: 10%; animation: blob-drift 24s ease-in-out infinite reverse; }
+
+/* ── Aura Effect: two blended radial glows whose colours shift as you move ── */
+.page-hero__aura {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.page-hero__aura::before,
+.page-hero__aura::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.page-hero__aura::before {
+  background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(var(--c1, 232, 181, 71), 0.22), transparent 60%);
+}
+
+.page-hero__aura::after {
+  background: radial-gradient(460px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(var(--c2, 208, 0, 0), 0.14), transparent 65%);
+  filter: blur(6px);
+}
+
+/* Hide on mobile */
+@media (max-width: 767px) {
+  .page-hero__aura {
+    display: none;
+  }
+}
 
 /* ── Legal Page Hero ── */
 .legal-hero {

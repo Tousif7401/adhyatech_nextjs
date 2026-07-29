@@ -118,14 +118,16 @@ export default function Header() {
                   <span className="dropdown__icon">Al</span>
                   <span className="dropdown__text"><strong>Alumnyo</strong><span>Alumni management for colleges & universities</span></span>
                 </Link></li>
-                <li><Link href="/#joomlaxpress">
+                {/* JoomlaXpress — we will add it later */}
+                {/* <li><Link href="/#joomlaxpress">
                   <span className="dropdown__icon">Jx</span>
                   <span className="dropdown__text"><strong>JoomlaXpress</strong><span>Premium Joomla templates & addons</span></span>
-                </Link></li>
-                <li><Link href="/#leadflux">
+                </Link></li> */}
+                {/* LeadFlux — we will add it later */}
+                {/* <li><Link href="/#leadflux">
                   <span className="dropdown__icon">Lf</span>
                   <span className="dropdown__text"><strong>LeadFlux</strong><span>WhatsApp + web lead capture for SMEs</span></span>
-                </Link></li>
+                </Link></li> */}
                 <li className="dropdown__divider"></li>
                 <li><Link href="/#products" className="dropdown__footer">All products →</Link></li>
               </ul>
