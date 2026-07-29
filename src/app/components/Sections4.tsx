@@ -13,6 +13,8 @@ interface TestimonialProps {
 }
 
 export function Testimonials({ testimonials }: TestimonialProps) {
+  const [selectedTestimonial, setSelectedTestimonial] = useState<Testimonial | null>(null);
+
   return (
     <section className="testimonials">
       <div className="container">
@@ -22,7 +24,14 @@ export function Testimonials({ testimonials }: TestimonialProps) {
         </div>
         <div className="testimonials__grid">
           {testimonials.map((t, i) => (
-            <article key={i} className={`testimonial${t.span2 ? ' testimonial--featured' : ''}`} data-aos="fade-up" data-aos-delay={i * 100}>
+            <article
+              key={i}
+              className={`testimonial${t.span2 ? ' testimonial--featured' : ''}`}
+              data-aos="fade-up"
+              data-aos-delay={i * 100}
+              onClick={() => setSelectedTestimonial(t)}
+              style={{ cursor: 'pointer' }}
+            >
               <p className="testimonial__quote">{t.quote}</p>
               <div className="testimonial__person">
                 <div className="testimonial__avatar">{t.author_initials}</div>
@@ -32,6 +41,34 @@ export function Testimonials({ testimonials }: TestimonialProps) {
           ))}
         </div>
       </div>
+
+      {/* Dialog */}
+      {selectedTestimonial && (
+        <div
+          className="testimonial-dialog-overlay"
+          onClick={() => setSelectedTestimonial(null)}
+        >
+          <div
+            className="testimonial-dialog"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="testimonial-dialog__close"
+              onClick={() => setSelectedTestimonial(null)}
+              aria-label="Close"
+            >
+              ✕
+            </button>
+            <div className="testimonial testimonial--expanded">
+              <p className="testimonial__quote">{selectedTestimonial.quote}</p>
+              <div className="testimonial__person">
+                <div className="testimonial__avatar">{selectedTestimonial.author_initials}</div>
+                <div><strong>{selectedTestimonial.author_name}</strong><span>{selectedTestimonial.author_role}</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
