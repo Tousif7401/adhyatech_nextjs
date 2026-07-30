@@ -45,6 +45,7 @@ export const TextHoverEffect = ({
       onMouseMove={handleMouseMove}
       className={cn("w-full h-full select-none uppercase cursor-pointer", className)}
       style={{ overflow: 'visible' }}
+      preserveAspectRatio="xMidYMid meet"
     >
       <defs>
         {/* Red gradient for fill - matching project brand colors */}
@@ -85,7 +86,7 @@ export const TextHoverEffect = ({
             stroke="rgba(245, 242, 234, 0.3)"
             fill="none"
             fontFamily="'Bricolage Grotesque', system-ui, sans-serif"
-            fontSize="190"
+            fontSize="160"
             fontWeight="600"
             initial={{ strokeDashoffset: 2000, strokeDasharray: 2000 }}
             animate={{ strokeDashoffset: 0 }}
@@ -108,7 +109,7 @@ export const TextHoverEffect = ({
             opacity={hovered ? 1 : 0}
             style={{ transition: 'opacity 0.2s' }}
             fontFamily="'Bricolage Grotesque', system-ui, sans-serif"
-            fontSize="190"
+            fontSize="160"
             fontWeight="600"
           >
             {text}
