@@ -4244,10 +4244,10 @@ HERO+MOTION GRAPHICS → HTML SECTION 3 Layered: gradient mesh+particles+cursor 
   text-align: center;
   overflow: visible;
   position: relative;
-  margin-top: -100px;
+  margin-top: -80px;
   padding-top: 160px;
-  margin-bottom: -80px;
-  padding-bottom: 140px;
+  margin-bottom: -40px;
+  padding-bottom: 80px;
 }
 
 .footer__bottom-container {
@@ -4274,21 +4274,30 @@ HERO+MOTION GRAPHICS → HTML SECTION 3 Layered: gradient mesh+particles+cursor 
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 200px;
+  height: 240px;
   margin: 0 auto;
   z-index: 1;
+  padding-top: 40px;
 }
 
 .footer__animated-text {
   width: 100%;
   height: 100%;
   cursor: pointer;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.footer__animated-text svg {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100%;
 }
 
 .footer__giant span {
   font-family: var(--f-display);
   font-weight: 600;
-  font-size: clamp(80px, 18vw, 280px);
+  font-size: clamp(70px, 16vw, 220px);
   line-height: 0.85;
   letter-spacing: -0.05em;
   color: rgba(245, 242, 234, 0.04);
@@ -4496,6 +4505,8 @@ HERO+MOTION GRAPHICS → HTML SECTION 3 Layered: gradient mesh+particles+cursor 
 
   .footer__giant {
     padding: 40px 0;
+    margin-bottom: -30px;
+    padding-bottom: 50px;
   }
 
   .footer__bottom {
@@ -4697,11 +4708,19 @@ HERO+MOTION GRAPHICS → HTML SECTION 3 Layered: gradient mesh+particles+cursor 
   }
 
   .footer__giant {
-    padding: 30px 0;
+    padding: 20px 0;
+    margin-top: -40px;
+    padding-top: 80px;
+    margin-bottom: -20px;
+    padding-bottom: 30px;
+  }
+
+  .footer__giant-text {
+    height: 80px;
   }
 
   .footer__giant span {
-    font-size: clamp(60px, 15vw, 120px);
+    font-size: clamp(28px, 9vw, 50px);
   }
 
   .footer__bottom {
