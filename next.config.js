@@ -4,7 +4,7 @@ const nextConfig = {
 
   // output: 'export',  // Remove for SSR
 
-  trailingSlash: true,
+  trailingSlash: false,
   images: {
     unoptimized: true,
   },

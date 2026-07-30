@@ -1,12 +1,14 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Testimonial } from "@/types/testimonial";
 import { useSettings } from "../context/SettingsContext";
+import { useInView } from "framer-motion";
 
 import { sendNewsletterSubscribe } from "@/lib/newsletter";
 
 import Link from "next/link";
+import { TextHoverEffect } from "@/components/TextHoverEffect";
 
 interface TestimonialProps {
   testimonials: Testimonial[];
@@ -146,6 +148,8 @@ export function BigCTA() {
 }
 
 export function Footer() {
+  const footerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(footerRef, { once: false, amount: 0.3 });
 
   const settings = useSettings();
 
@@ -260,9 +264,14 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="footer__giant"><span>ADYATECH</span></div>
+      <div className="footer__giant" ref={footerRef}>
+        <div className="footer__giant-text">
+          <TextHoverEffect text="ADYATECH" className="footer__animated-text" triggerAnimation={isInView} />
+        </div>
+      </div>
 
-      <div className="container footer__bottom">
+      <div className="footer__bottom-container">
+        <div className="container footer__bottom">
   <span>© {new Date().getFullYear()} Adyatech Solutions LLP · Ballari, Karnataka, India · CIN: ACH-5622</span>
   <div className="footer__legal">
     <Link href="/terms">Terms</Link>
@@ -277,6 +286,7 @@ export function Footer() {
     ))}
   </div>
 </div>
+    </div>
     </footer>
   )
 }

@@ -4242,8 +4242,47 @@ HERO+MOTION GRAPHICS → HTML SECTION 3 Layered: gradient mesh+particles+cursor 
 .footer__giant {
   padding: 60px 0;
   text-align: center;
-  overflow: hidden;
-  border-bottom: 1px solid var(--line-d);
+  overflow: visible;
+  position: relative;
+  margin-top: -100px;
+  padding-top: 160px;
+  margin-bottom: -80px;
+  padding-bottom: 140px;
+}
+
+.footer__bottom-container {
+  border-top: 1px solid var(--line-d);
+  width: 100%;
+}
+
+.footer__bottom {
+  padding: 28px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: rgba(245, 242, 234, 0.4);
+  letter-spacing: 0.04em;
+}
+
+.footer__giant-text {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.footer__animated-text {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .footer__giant span {
@@ -4253,7 +4292,7 @@ HERO+MOTION GRAPHICS → HTML SECTION 3 Layered: gradient mesh+particles+cursor 
   line-height: 0.85;
   letter-spacing: -0.05em;
   color: rgba(245, 242, 234, 0.04);
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.12);
+  -webkit-text-stroke: 1px rgba(245, 242, 234, 0.15);
   display: block;
 }
 
@@ -6236,7 +6275,7 @@ a:hover > .shot,
 
 /* ---------- Government: grid / listing ---------- */
 .gov-hero {
-  padding: clamp(70px, 10vw, 130px) 0 clamp(40px, 6vw, 70px);
+  padding: clamp(30px, 6vw, 80px) 0 clamp(40px, 6vw, 70px);
   border-bottom: 1px solid var(--line-d, rgba(245, 242, 234, 0.1));
 }
 .gov-hero__crumb {
@@ -6284,6 +6323,11 @@ a:hover > .shot,
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(245, 242, 234, 0.5);
+}
+
+.gov-hero-stats {
+  padding: 20px 0 clamp(30px, 5vw, 50px);
+  border-bottom: 1px solid var(--line-d, rgba(245, 242, 234, 0.1));
 }
 
 .gov-grid {
@@ -6961,4 +7005,178 @@ a:hover > .shot,
 .nf-glyph canvas { width: 100%; height: 100%; display: block; }
 @media (max-width: 860px) {
   .nf-viz { max-width: 300px; margin-top: 12px; }
+/* ============================================================
+   GOVERNMENT PROJECTS — grid + case-study detail
+   Append to src/app/globals.css. Uses existing Adyatech tokens.
+   ============================================================ */
+
+/* ---------- Grid / listing ---------- */
+.gov-hero {
+  padding: clamp(30px, 6vw, 80px) 0 clamp(40px, 6vw, 70px);
+  border-bottom: 1px solid var(--line-d, rgba(245, 242, 234, 0.1));
 }
+.gov-hero__crumb {
+  font-family: var(--f-mono);
+  font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(245, 242, 234, 0.45); margin-bottom: 28px;
+}
+.gov-hero h1 {
+  font-family: var(--f-display); font-weight: 500;
+  font-size: clamp(44px, 6.5vw, 96px); line-height: 0.98;
+  letter-spacing: -0.035em; margin-bottom: 22px;
+}
+.gov-hero h1 em { font-family: var(--f-serif); font-style: italic; color: var(--gold); }
+.gov-hero p {
+  font-size: clamp(16px, 1.3vw, 19px); line-height: 1.6;
+  color: rgba(245, 242, 234, 0.7); max-width: 60ch;
+}
+.gov-hero__stats { display: flex; gap: 40px; margin-top: 38px; flex-wrap: wrap; }
+.gov-hero__stat strong { font-family: var(--f-display); font-weight: 600; font-size: 28px; display: block; }
+.gov-hero__stat span {
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(245, 242, 234, 0.5);
+}
+
+.gov-grid { padding: clamp(50px, 7vw, 90px) 0; }
+.gov-grid__inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+@media (max-width: 900px) { .gov-grid__inner { grid-template-columns: 1fr; } }
+
+.gcard {
+  background: var(--coal, #14181f);
+  border: 1px solid var(--line-d, rgba(245, 242, 234, 0.1));
+  border-radius: 16px; overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+  display: flex; flex-direction: column;
+}
+.gcard:hover { transform: translateY(-4px); border-color: rgba(245, 242, 234, 0.25); }
+.gcard__media {
+  aspect-ratio: 16 / 10; position: relative;
+  background: linear-gradient(135deg, rgba(232, 181, 71, 0.1), rgba(48, 56, 64, 0.4));
+  border-bottom: 1px solid var(--line-d, rgba(245, 242, 234, 0.1));
+  padding: 20px; display: flex; flex-direction: column; justify-content: space-between;
+}
+.gcard__frame { display: flex; justify-content: space-between; align-items: flex-start; }
+.gcard__dept {
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.06em;
+  color: rgba(245, 242, 234, 0.7); max-width: 60%; line-height: 1.4;
+}
+.gcard__year { font-family: var(--f-mono); font-size: 11px; color: rgba(245, 242, 234, 0.45); }
+.gcard__tag {
+  align-self: flex-start; font-family: var(--f-mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold);
+  border: 1px solid rgba(232, 181, 71, 0.35); border-radius: 100px; padding: 4px 10px;
+}
+.gcard__body { padding: 24px; }
+.gcard__body h3 {
+  font-family: var(--f-display); font-weight: 600; font-size: 22px;
+  letter-spacing: -0.01em; margin-bottom: 10px;
+}
+.gcard__body p {
+  font-size: 14.5px; line-height: 1.55; color: rgba(245, 242, 234, 0.62); margin-bottom: 18px;
+}
+.gcard__more { font-family: var(--f-mono); font-size: 12px; color: var(--gold); }
+
+/* ---------- Case-study detail ---------- */
+.cs-hero { padding: clamp(70px, 10vw, 120px) 0 clamp(30px, 4vw, 50px); }
+.cs-hero__crumb {
+  font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em;
+  color: rgba(245, 242, 234, 0.45); margin-bottom: 26px;
+}
+.cs-hero__crumb a { color: rgba(245, 242, 234, 0.65); }
+.cs-hero__crumb a:hover { color: var(--gold); }
+.cs-meta {
+  display: flex; gap: 12px; align-items: center; font-family: var(--f-mono);
+  font-size: 12px; color: rgba(245, 242, 234, 0.5); margin-bottom: 20px; flex-wrap: wrap;
+}
+.cs-meta__tag {
+  color: var(--gold); border: 1px solid rgba(232, 181, 71, 0.35); border-radius: 100px;
+  padding: 4px 11px; text-transform: uppercase; letter-spacing: 0.08em; font-size: 10px;
+}
+.cs-hero h1 {
+  font-family: var(--f-display); font-weight: 500; font-size: clamp(40px, 6vw, 84px);
+  line-height: 1; letter-spacing: -0.03em; margin-bottom: 22px; max-width: 16ch;
+}
+.cs-lede {
+  font-family: var(--f-serif); font-style: italic; font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.4; color: rgba(245, 242, 234, 0.8); max-width: 44ch;
+}
+
+.cs-shot { margin: 20px auto clamp(50px, 7vw, 80px); }
+.cs-shot__frame {
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--line-d, rgba(245, 242, 234, 0.1));
+  background: var(--coal, #14181f); box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.7);
+}
+.cs-shot__chrome {
+  height: 42px; background: #1c2129; display: flex; align-items: center; gap: 8px;
+  padding: 0 16px; border-bottom: 1px solid var(--line-d, rgba(245, 242, 234, 0.1));
+}
+.cs-shot__chrome span { width: 11px; height: 11px; border-radius: 50%; }
+.cs-shot__chrome span:nth-child(1) { background: #ff5f57; }
+.cs-shot__chrome span:nth-child(2) { background: #febc2e; }
+.cs-shot__chrome span:nth-child(3) { background: #28c840; }
+.cs-shot__chrome em {
+  margin-left: 12px; font-family: var(--f-mono); font-size: 11px;
+  font-style: normal; color: rgba(245, 242, 234, 0.4);
+}
+.cs-shot__body {
+  aspect-ratio: 16 / 9; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px;
+  background: linear-gradient(135deg, rgba(232, 181, 71, 0.06), rgba(48, 56, 64, 0.3));
+  color: rgba(245, 242, 234, 0.35); font-family: var(--f-mono); font-size: 13px; text-align: center;
+}
+.cs-shot__body img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.cs-shot__body small { font-size: 11px; opacity: 0.7; }
+
+.cs-grid {
+  display: grid; grid-template-columns: 1fr 300px;
+  gap: clamp(40px, 5vw, 72px); align-items: start;
+}
+@media (max-width: 860px) { .cs-grid { grid-template-columns: 1fr; } }
+.cs-block { margin-bottom: clamp(36px, 5vw, 56px); }
+.cs-block h2 {
+  font-family: var(--f-display); font-weight: 600; font-size: clamp(22px, 2.4vw, 30px);
+  letter-spacing: -0.01em; margin-bottom: 16px; display: flex; align-items: baseline; gap: 14px;
+}
+.cs-num { font-family: var(--f-mono); font-size: 13px; color: var(--red); font-weight: 500; }
+.cs-block p {
+  font-size: clamp(15px, 1.15vw, 17px); line-height: 1.7; color: rgba(245, 242, 234, 0.75);
+}
+.cs-outcomes { list-style: none; display: flex; flex-direction: column; gap: 12px; padding: 0; margin: 0; }
+.cs-outcomes li {
+  padding-left: 26px; position: relative; font-size: 16px; line-height: 1.6;
+  color: rgba(245, 242, 234, 0.82);
+}
+.cs-outcomes li::before { content: '→'; position: absolute; left: 0; color: var(--gold); }
+
+.cs-side {
+  position: sticky; top: 90px; background: var(--coal, #14181f);
+  border: 1px solid var(--line-d, rgba(245, 242, 234, 0.1));
+  border-radius: 16px; padding: 26px; display: flex; flex-direction: column; gap: 20px;
+}
+.cs-fact { display: flex; flex-direction: column; gap: 5px; }
+.cs-fact > span {
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(245, 242, 234, 0.45);
+}
+.cs-fact > strong { font-family: var(--f-display); font-weight: 500; font-size: 16px; line-height: 1.3; }
+.cs-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+.cs-stack span {
+  font-family: var(--f-mono); font-size: 11px; color: rgba(245, 242, 234, 0.7);
+  border: 1px solid var(--line-d, rgba(245, 242, 234, 0.1)); border-radius: 6px; padding: 3px 8px;
+}
+
+.cs-next {
+  margin-top: clamp(40px, 6vw, 70px); padding-top: 32px;
+  border-top: 1px solid var(--line-d, rgba(245, 242, 234, 0.1));
+}
+.cs-next__link { display: flex; flex-direction: column; gap: 6px; }
+.cs-next__link span {
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(245, 242, 234, 0.45);
+}
+.cs-next__link strong {
+  font-family: var(--f-display); font-weight: 500; font-size: clamp(24px, 3vw, 38px);
+  letter-spacing: -0.02em; transition: color 0.2s;
+}
+.cs-next__link:hover strong { color: var(--gold); }
