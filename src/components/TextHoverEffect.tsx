@@ -65,7 +65,7 @@ export const TextHoverEffect = ({
           <motion.circle
             cx={cursorPos.x}
             cy={cursorPos.y}
-            r="40"
+            r="80"
             fill="white"
             filter="url(#blurFilter)"
             transition={{ duration: 0.02 }}
