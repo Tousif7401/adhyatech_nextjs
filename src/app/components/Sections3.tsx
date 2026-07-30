@@ -316,7 +316,7 @@ export function GovtBand() {
             ].map(item => <li key={item}>{item}</li>)}
           </ul>
           <div style={{ marginTop: 32, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <a href="#govt-projects" className="btn btn--ghost-l">Government project case studies <span className="arrow">↗</span></a>
+            <Link href="/government" className="btn btn--ghost-l">Government project case studies <span className="arrow">↗</span></Link>
           </div>
         </div>
       </div>
