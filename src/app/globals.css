@@ -2850,20 +2850,23 @@ HERO+MOTION GRAPHICS → HTML SECTION 3 Layered: gradient mesh+particles+cursor 
   overflow: hidden;
 }
 
-.product-hero.is-alumnyo::before {
-  content: "ALUMNYO";
-  position: absolute;
-  top: 20px;
-  bottom: auto;
-  left: -20px;
-  font-family: var(--f-display);
-  font-weight: 700;
-  font-size: clamp(180px, 22vw, 380px);
-  color: rgba(208, 0, 0, 0.15);
-  letter-spacing: -0.05em;
-  line-height: 1;
-  pointer-events: none;
-  z-index: 0;
+/* Mobile/tablet padding for alumnyo section */
+@media (max-width: 1024px) {
+  .alumnyo {
+    padding-top: 100px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .alumnyo {
+    padding-top: 80px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .alumnyo {
+    padding-top: 60px !important;
+  }
 }
 
 .alumnyo::before {
@@ -2894,32 +2897,20 @@ HERO+MOTION GRAPHICS → HTML SECTION 3 Layered: gradient mesh+particles+cursor 
 
 /* Responsive watermark for .alumnyo */
 @media (max-width: 768px) {
-  .product-hero.is-alumnyo::before {
-    font-size: clamp(100px, 18vw, 160px);
-    top: 15px;
-    bottom: auto;
-    left: -15px;
-  }
-
   .alumnyo::before {
     font-size: clamp(100px, 18vw, 160px);
     bottom: -30px;
-    left: -15px;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
   }
 }
 
 @media (max-width: 480px) {
-  .product-hero.is-alumnyo::before {
-    font-size: clamp(70px, 15vw, 120px);
-    top: 10px;
-    bottom: auto;
-    left: -10px;
-  }
-
   .alumnyo::before {
     font-size: clamp(70px, 15vw, 120px);
     bottom: -20px;
-    left: -10px;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
   }
 }
 
@@ -3270,6 +3261,25 @@ HERO+MOTION GRAPHICS → HTML SECTION 3 Layered: gradient mesh+particles+cursor 
     var(--ink);
   position: relative;
   overflow: hidden;
+}
+
+/* Mobile/tablet padding for osciva section */
+@media (max-width: 1024px) {
+  .osciva {
+    padding-top: 100px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .osciva {
+    padding-top: 80px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .osciva {
+    padding-top: 60px !important;
+  }
 }
 
 .osciva::before {
@@ -5473,6 +5483,25 @@ HERO+MOTION GRAPHICS → HTML SECTION 3 Layered: gradient mesh+particles+cursor 
 /* Allow alumnyo watermark to extend beyond */
 .product-hero.is-alumnyo {
   overflow: visible;
+}
+
+/* Mobile/tablet padding for product-hero */
+@media (max-width: 1024px) {
+  .product-hero {
+    padding-top: 100px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-hero {
+    padding-top: 80px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-hero {
+    padding-top: 60px !important;
+  }
 }
 
 /* Mesh background blobs */

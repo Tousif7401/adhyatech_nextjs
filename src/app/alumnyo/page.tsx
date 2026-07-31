@@ -2,6 +2,7 @@ import UtilityBar from '../components/UtilityBar'
 import Header from '../components/Header'
 import { Footer, BigCTA, Testimonials } from '../components/Sections4'
 import Link from "next/link";
+import PhoneMockupBasic from "@/components/phone-mockups-1";
 
 import { getFeaturedTestimonials } from "../../lib/testimonials";
 
@@ -121,6 +122,10 @@ export default async function AlumnyoPage() {
       <Header />
       <main>
         <section className="product-hero is-alumnyo" style={{ paddingBottom: '100px' }}>
+          <div className="product-hero__mesh">
+            <div className="product-hero__mesh-blob"></div>
+            <div className="product-hero__mesh-blob"></div>
+          </div>
           <div className="container">
             <div className="product-hero__inner">
               <div>
@@ -134,26 +139,8 @@ export default async function AlumnyoPage() {
                   <a href="https://alumnyo.com" className="btn btn--ghost-d" target="_blank">Visit alumnyo.com</a>
                 </div>
               </div>
-              <div className="product-hero__visual" aria-hidden="true">
-                <div className="alumnyo__visual" style={{ height: 360 }}>
-                  <div className="dash-card dash-card--1">
-                    <div className="dash-card__label">Active alumni</div>
-                    <div className="dash-card__value">12,847 <span className="delta">↑ 23%</span></div>
-                    <div className="dash-card__bar"></div>
-                  </div>
-                  <div className="dash-card dash-card--2">
-                    <div className="dash-card__label">Reunion · 2026</div>
-                    <div className="dash-card__value">847 RSVPs</div>
-                    <div className="dash-card__avatars">
-                      {['R', 'K', 'P', 'S'].map(l => <span key={l}>{l}</span>)}
-                    </div>
-                  </div>
-                  <div className="dash-card dash-card--3">
-                    <div className="dash-card__label">Donations / month</div>
-                    <div className="dash-card__value">₹14.2L <span className="delta">↑ 41%</span></div>
-                    <div className="dash-card__bar"></div>
-                  </div>
-                </div>
+              <div data-aos="fade-up" data-aos-delay="200">
+                <PhoneMockupBasic />
               </div>
             </div>
           </div>

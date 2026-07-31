@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import OscivaAgentGraph from '@/app/components/OscivaAgentGraph'
 import SphereParticles from '@/components/SphereParticles'
+import PhoneMockupBasic from "@/components/phone-mockups-1"
 import Link from "next/link";
 import { Product } from "@/types/product";
 
@@ -154,24 +155,8 @@ export function Alumnyo() {
           </div>
         </div>
 
-        <div className="alumnyo__visual" data-aos="fade-up" data-aos-delay="200" aria-hidden="true">
-          <div className="dash-card dash-card--1">
-            <div className="dash-card__label">Active alumni</div>
-            <div className="dash-card__value">12,847 <span className="delta">↑ 23%</span></div>
-            <div className="dash-card__bar"></div>
-          </div>
-          <div className="dash-card dash-card--2">
-            <div className="dash-card__label">Reunion · 2026</div>
-            <div className="dash-card__value">847 RSVPs</div>
-            <div className="dash-card__avatars">
-              {['R', 'K', 'P', 'S'].map(l => <span key={l}>{l}</span>)}
-            </div>
-          </div>
-          <div className="dash-card dash-card--3">
-            <div className="dash-card__label">Donations · This month</div>
-            <div className="dash-card__value">₹14.2L <span className="delta">↑ 41%</span></div>
-            <div className="dash-card__bar"></div>
-          </div>
+        <div data-aos="fade-up" data-aos-delay="200">
+          <PhoneMockupBasic />
         </div>
       </div>
     </section>
