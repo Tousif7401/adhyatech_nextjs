@@ -12,7 +12,8 @@ export const metadata: Metadata = {
 const PATHS = [
   { href: '/portfolio', label: 'Our work', desc: '400+ projects, 14 countries' },
   { href: '/osciva', label: 'Osciva AI', desc: 'agents, RAG, voice bots' },
-  { href: '/government', label: 'Government projects', desc: 'state & zilla panchayat systems' },
+  // Government projects - TEMPORARILY DISABLED - Will be uncommented later in future
+  // { href: '/government', label: 'Government projects', desc: 'state & zilla panchayat systems' },
   { href: '/contact', label: 'Talk to us', desc: 'start a project' },
 ]
 
