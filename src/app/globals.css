@@ -7288,3 +7288,4 @@ a:hover > .shot,
   object-fit: cover;
   object-position: top center;
 }
+.shot--1610 { aspect-ratio: 16 / 10; }
