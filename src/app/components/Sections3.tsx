@@ -300,9 +300,10 @@ export function GovtBand() {
               'Complete source code ownership for clients',
             ].map(item => <li key={item}>{item}</li>)}
           </ul>
-          <div style={{ marginTop: 32, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+          {/* Government Projects case studies button - TEMPORARILY DISABLED - Will be uncommented later in future */}
+          {/* <div style={{ marginTop: 32, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
             <Link href="/government" className="btn btn--ghost-l">Government project case studies <span className="arrow">↗</span></Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

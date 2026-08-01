@@ -227,7 +227,8 @@ export function Footer() {
               <ul>
                 <li><Link href="/about">About</Link></li>
                 <li><Link href="/about#leadership">Leadership</Link></li>
-                <li><Link href="/#government">Govt Projects</Link></li>
+                {/* Govt Projects - TEMPORARILY DISABLED - Will be uncommented later in future */}
+                {/* <li><Link href="/#government">Govt Projects</Link></li> */}
                 <li><Link href="/careers">Careers</Link></li>
                 <li><Link href="/contact">Contact</Link></li>
               </ul>
