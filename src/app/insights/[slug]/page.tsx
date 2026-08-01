@@ -132,10 +132,10 @@ export default async function ArticlePage({ params }: { params: { slug: string }
                 <p className="article-hero__excerpt">{article.description}</p>
                 <div className="article-hero__meta">
                   <div className="article-hero__author">
-                    <div className="article-hero__author-avatar">V</div>
+                    <div className="article-hero__author-avatar">AT</div>
                     <div className="article-hero__author-info">
-                      <strong>Vijay Reddy</strong>
-                      <span>Founder · Adyatech</span>
+                      <strong>Adyatech Team</strong>
+                      <span></span>
                     </div>
                   </div>
                   <div className="article-hero__meta-divider"></div>
@@ -238,11 +238,11 @@ export default async function ArticlePage({ params }: { params: { slug: string }
               </div>
 
               <div className="article-bio">
-                <div className="article-bio__avatar">V</div>
+                <div className="article-bio__avatar">AT</div>
                 <div className="article-bio__info">
-                  <h4>Vijay Reddy</h4>
+                  <h4>Adyatech Team</h4>
                   {/* <div className="role">CEO</div> */}
-                  <p>Founder · Adyatech</p>
+                  <p>Adyatech</p>
                 </div>
               </div>
             </div>

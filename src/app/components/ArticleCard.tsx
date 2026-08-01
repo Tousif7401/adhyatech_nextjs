@@ -71,11 +71,11 @@ export default function ArticleCard({
                 <div className="insights-card__author-row">
 
                     <div className="insights-card__author-avatar">
-                        VR
+                        AT
                     </div>
 
                     <strong>
-                        Vijay Reddy
+                        Adyatech Team
                     </strong>
 
                 </div>

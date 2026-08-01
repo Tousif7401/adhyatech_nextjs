@@ -246,8 +246,6 @@ export function Footer() {
               <ul>
                 <li><Link href="/osciva">Osciva AI</Link></li>
                 <li><Link href="/alumnyo">Alumnyo</Link></li>
-                <li><Link href="/#joomlaxpress">JoomlaXpress</Link></li>
-                <li><Link href="/#leadflux">LeadFlux</Link></li>
               </ul>
             </div>
             <div>
