@@ -7265,11 +7265,26 @@ a:hover > .shot,
   object-position: top center;
   display: block;
 }
-/* Featured slider frame — give it a fixed ratio so cover can crop */
+/* Featured slider frame — force a real height */
+.slide__visual {
+  align-self: start;
+}
 .slide__visual .shot {
-  aspect-ratio: 16 / 10;
   width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
 }
 .slide__visual .shot__viewport {
+  position: relative;
+  width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+.slide__visual .shot__viewport img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
 }
