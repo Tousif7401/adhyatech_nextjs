@@ -1665,12 +1665,18 @@ HERO+MOTION GRAPHICS → HTML SECTION 3 Layered: gradient mesh+particles+cursor 
   background: linear-gradient(125deg, #2a2418 0%, #14100a 100%);
 }
 
-.slide__copy {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.slide__link-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: clamp(28px, 4vw, 56px);
+  gap: 40px;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease;
 }
-
 .slide__num {
   font-family: var(--f-mono);
   font-size: 12px;
@@ -6192,6 +6198,8 @@ HERO+MOTION GRAPHICS → HTML SECTION 3 Layered: gradient mesh+particles+cursor 
    ============================================================ */
 
 .shot {
+  width: 100%;
+  height: 100%;
   border-radius: 14px;
   overflow: hidden;
   background: var(--coal);
@@ -6273,6 +6281,7 @@ HERO+MOTION GRAPHICS → HTML SECTION 3 Layered: gradient mesh+particles+cursor 
   aspect-ratio: 16 / 10;
   overflow: hidden;
   background: #0f1216;
+  height: 100%;
 }
 .shot__viewport img {
   width: 100%;

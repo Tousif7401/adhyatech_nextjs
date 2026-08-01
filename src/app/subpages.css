@@ -934,10 +934,9 @@
 }
 .featured-card:hover { transform: translateY(-6px); border-color: var(--brand-gold); }
 .featured-card__media {
-
   background: linear-gradient(135deg, var(--brand-slate-2) 0%, var(--brand-slate-3) 100%);
   position: relative;
-
+  overflow: hidden;
 }
 .featured-card__media::before {
   content: '';
@@ -1071,10 +1070,9 @@
 }
 .portfolio-card:hover { transform: translateY(-4px); border-color: var(--brand-gold); }
 .portfolio-card__media {
-
   background: linear-gradient(135deg, var(--brand-slate-2), var(--brand-slate-3));
   position: relative;
-
+  overflow: hidden;
 }
 .portfolio-card__media::before {
   content: '';

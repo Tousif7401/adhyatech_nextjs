@@ -144,17 +144,16 @@ export default function InsightContent({ articles, categories }: Props) {
                         <div className="insights-featured__author">
 
                             <div className="insights-card__author-avatar">
-                                VR
+                                AT
                             </div>
 
                             <div>
                                 <strong>
-                                    Vijay Reddy
+                                    Adyatech Team
                                 </strong>
 
                                 <small>
-                                    Founder · Adyatech
-                                </small>
+                                                                    </small>
                             </div>
 
                         </div>
