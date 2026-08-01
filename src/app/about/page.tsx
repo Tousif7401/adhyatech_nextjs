@@ -5,6 +5,17 @@ import { Footer } from '../components/Sections4'
 import { Impact } from '../components/Sections3'
 import Team from '../components/Team'
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const LunarScene = dynamic(
+  () => import("@/components/ui/lunar-scene").then(mod => ({ default: mod.default })),
+  { ssr: false }
+);
+
+const TimelineProgress = dynamic(
+  () => import("@/components/TimelineProgress").then(mod => ({ default: mod.default })),
+  { ssr: false }
+);
 
 import type { Metadata } from "next";
 import { getSeo } from "../../lib/seo";
@@ -86,10 +97,8 @@ export default async function AboutPage() {
                 </p>
               </div>
               <div className="story-visual">
-                <div className="story-visual__badge">
-                  <div className="year">2010</div>
-                  <p>Founded in Ballari, Karnataka.<br />Still here. Still hiring.</p>
-                </div>
+                <LunarScene />
+                <div className="story-visual__glow story-visual__glow--silver"></div>
               </div>
             </div>
           </div>
@@ -102,7 +111,7 @@ export default async function AboutPage() {
               <span className="eyebrow">The journey · 02</span>
               <h2 className="section-title">From <em>2010 to today</em>.</h2>
             </div>
-            <div className="timeline">
+            <TimelineProgress>
               {timeline.map(item => (
                 <div key={item.year} className="timeline-item">
                   <div className="timeline-year">{item.year}</div>
@@ -112,7 +121,7 @@ export default async function AboutPage() {
                   </div>
                 </div>
               ))}
-            </div>
+            </TimelineProgress>
           </div>
         </section>
 

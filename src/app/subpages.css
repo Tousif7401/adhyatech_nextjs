@@ -290,6 +290,53 @@
   content: '';
   position: absolute; inset: 0;
   background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.02) 20px, rgba(255,255,255,0.02) 21px);
+  z-index: 1;
+  pointer-events: none;
+}
+.story-visual::after {
+  content: '';
+  position: absolute;
+  top: -15%;
+  right: -15%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(208, 0, 0, 0.25), transparent 65%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 2;
+  animation: blob-drift-visual 18s ease-in-out infinite;
+}
+@keyframes blob-drift-visual {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-10%, 10%) scale(1.1);
+  }
+}
+/* Silver glow blob - bottom left */
+.story-visual__glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+}
+.story-visual__glow--silver {
+  bottom: -20%;
+  left: -20%;
+  width: 55%;
+  height: 55%;
+  background: radial-gradient(circle, rgba(66, 74, 84, 0.35), transparent 65%);
+  filter: blur(60px);
+  animation: blob-drift-silver 22s ease-in-out infinite;
+}
+@keyframes blob-drift-silver {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(15%, -10%) scale(1.15);
+  }
 }
 .story-visual__badge {
   position: absolute;
@@ -316,12 +363,27 @@
   margin: 64px auto 0;
   position: relative;
 }
-.timeline::before {
-  content: '';
+/* Base vertical line (background) */
+.timeline__line-bg {
   position: absolute;
-  left: 80px; top: 0; bottom: 0;
+  left: 80px;
+  top: 0;
+  bottom: 0;
   width: 2px;
   background: var(--line-d-2);
+  z-index: 0;
+}
+/* Animated fill line - WHITE */
+.timeline__line-fill {
+  position: absolute;
+  left: 80px;
+  top: 0;
+  width: 2px;
+  height: 0%;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  transition: height 0.1s linear;
+  z-index: 1;
 }
 .timeline-item {
   display: grid;
@@ -333,12 +395,20 @@
 .timeline-item::before {
   content: '';
   position: absolute;
-  left: 73px; top: 32px;
-  width: 16px; height: 16px;
+  left: 73px;
+  top: 32px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: var(--brand-red);
   border: 4px solid var(--ink);
-  z-index: 1;
+  z-index: 2;
+  transition: all 0.4s var(--ease);
+}
+/* Glow effect when white line reaches the dot */
+.timeline-item--glow::before {
+  box-shadow: 0 0 0 4px rgba(208, 0, 0, 0.3), 0 0 25px rgba(208, 0, 0, 0.8), 0 0 40px rgba(208, 0, 0, 0.4);
+  transform: scale(1.15);
 }
 .timeline-year {
   font-family: var(--f-display);
@@ -346,6 +416,11 @@
   font-weight: 700;
   color: var(--brand-gold);
   padding-top: 4px;
+  opacity: 0.4;
+  transition: all 0.4s var(--ease);
+}
+.timeline-item--glow .timeline-year {
+  opacity: 1;
 }
 .timeline-content { padding-left: 32px; }
 .timeline-content h3 {
@@ -353,12 +428,20 @@
   font-size: 1.15rem;
   font-weight: 600;
   margin-bottom: 8px;
+  color: rgba(245,242,234,0.3);
+  transition: all 0.4s var(--ease);
+}
+.timeline-item--glow .timeline-content h3 {
   color: #F5F2EA;
 }
 .timeline-content p {
   font-size: 0.9rem;
   line-height: 1.7;
-  color: rgba(245,242,234,0.62);
+  color: rgba(245,242,234,0.25);
+  transition: all 0.4s var(--ease);
+}
+.timeline-item--glow .timeline-content p {
+  color: rgba(245,242,234,0.7);
 }
 
 /* Team Grid */
@@ -389,6 +472,14 @@
   font-size: 1.8rem;
   font-weight: 700;
   margin: 0 auto 20px;
+  overflow: hidden;
+}
+/* For image avatars (Next.js Image component) */
+.team-avatar--image {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 .team-card h3 {
   font-family: var(--f-display);

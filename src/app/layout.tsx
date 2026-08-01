@@ -5,10 +5,10 @@ import { getSettings } from "@/lib/settings";
 
 import './globals.css'
 import './product-details-v1.css'
-import { Geist } from "next/font/google";
+import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: 'Adyatech Solutions — Engineered for the Next Web · Ballari, IN',
@@ -30,7 +30,7 @@ export default async function RootLayout({
   const settings = await getSettings();
 
   return (
-    <html lang="en" data-theme="dark" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
+    <html lang="en" data-theme="dark" suppressHydrationWarning className={cn("font-sans", inter.variable)}>
       <head>
         <link rel="icon" type="image/png" href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/assets/logo/adyatech-logo-light.png`} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
