@@ -35,8 +35,8 @@ export default function BrowserFrame({
   className = '',
   style,
 }: BrowserFrameProps) {
-  const src = image.startsWith('http')
-    ? image
+  const safeSrc = src?.startsWith('http://')
+    ? src.replace('http://', 'https://')
     : `${process.env.NEXT_PUBLIC_STORAGE_URL || ''}/${image}`
 
   const displayUrl =
