@@ -3,7 +3,7 @@ import type { CSSProperties } from 'react'
 type Ratio = '16/10' | '4/3' | '16/9' | '21/9'
 
 const RATIO_CLASS: Record<Ratio, string> = {
-  '16/10': '',
+  '16/10': 'shot--1610',
   '4/3':   'shot--43',
   '16/9':  'shot--169',
   '21/9':  'shot--219',
