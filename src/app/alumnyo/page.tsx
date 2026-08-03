@@ -105,11 +105,11 @@ const alumnyoPricing = [
 ]
 
 const liveCustomers = [
-  { name: 'Bharatiya University', stat: '12,847', label: 'active alumni' },
-  { name: 'St. Joseph\'s College', stat: '8,200', label: 'profiles migrated' },
-  { name: 'IIT Karnataka', stat: '₹14.2L', label: 'donations / month' },
-  { name: 'NIMS Bangalore', stat: '847', label: 'RSVPs in 6 weeks' },
-  { name: 'Pragati College', stat: '4.8★', label: 'app store rating' },
+  { num: '10+', label: 'Powerful Modules' },
+  { num: '24×7', label: 'Cloud Accessibility' },
+  { num: '100%', label: 'Secure Data Management' },
+  { num: '5 Min', label: 'Quick Member Search' },
+  { num: '∞', label: 'Unlimited Alumni Growth' },
 ]
 
 export default async function AlumnyoPage() {
@@ -149,12 +149,11 @@ export default async function AlumnyoPage() {
         {/* Live Customers Strip */}
         <section className="legacy-band">
           <div className="container legacy-band__inner">
-            {liveCustomers.map(c => (
-              <div key={c.name} className="legacy-item">
-                <div className="legacy-item__num" style={{ fontSize: 'clamp(1.4rem,2.2vw,2rem)' }}>{c.stat}</div>
+            {liveCustomers.map((c, i) => (
+              <div key={i} className="legacy-item">
+                <div className="legacy-item__num" style={{ fontSize: 'clamp(1.4rem,2.2vw,2rem)' }}>{c.num}</div>
                 <div className="legacy-item__text">
-                  <strong>{c.name}</strong>
-                  <span>{c.label}</span>
+                  <strong>{c.label}</strong>
                 </div>
               </div>
             ))}
