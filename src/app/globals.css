@@ -5226,6 +5226,79 @@ HERO+MOTION GRAPHICS → HTML SECTION 3 Layered: gradient mesh+particles+cursor 
   }
 }
 
+/* Mobile landscape mode - short height */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero__slider {
+    aspect-ratio: auto;
+    min-height: 280px;
+    height: 280px;
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
+  .hero__slides {
+    min-height: 280px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .hero__slide {
+    padding: 16px 20px;
+    gap: 16px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .slide__head {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .slide__copy p {
+    font-size: 13px;
+    line-height: 1.4;
+    max-height: 60px;
+    overflow: hidden;
+  }
+
+  .slide__visual {
+    padding: 10px 16px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .slide__visual .shot {
+    min-height: 160px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .shot__viewport img {
+    object-fit: contain !important;
+  }
+
+  .slider__nav {
+    bottom: 10px;
+    right: 16px;
+    gap: 4px;
+  }
+
+  .slider__dot {
+    width: 18px;
+    height: 2px;
+  }
+
+  .slider__dot.is-active {
+    width: 28px;
+  }
+}
+
 @media (max-width: 480px) {
   /* Header mobile padding */
   .header__inner {
