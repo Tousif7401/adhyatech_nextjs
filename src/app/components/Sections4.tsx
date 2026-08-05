@@ -140,7 +140,7 @@ export function BigCTA() {
           <Link href="/contact" className="btn btn--ghost-d btn--lg">Or just send a message</Link>
         </div>
         <div className="bigcta__email">
-          Or just write to us → <a href={`mailto:${settings.emails[0].value}`}>{settings.emails[0].value}</a>
+          Or just write to us → <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@adyatech.com" target="_blank" rel="noopener noreferrer">hello@adyatech.com</a>
         </div>
       </div>
     </section>

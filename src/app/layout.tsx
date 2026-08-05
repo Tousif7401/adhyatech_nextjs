@@ -32,7 +32,7 @@ export default async function RootLayout({
   return (
     <html lang="en" data-theme="dark" suppressHydrationWarning className={cn("font-sans", inter.variable)}>
       <head>
-        <link rel="icon" type="image/png" href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/assets/logo/adyatech-logo-light.png`} />
+        <link rel="icon" type="image/svg+xml" href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/icon.svg`} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
