@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import UtilityBar from '../../components/UtilityBar'
 import Header from '../../components/Header'
 import { Footer } from '../../components/Sections4'
@@ -15,6 +15,125 @@ const faqs = [
 
 export default function RAGPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0)
+  const heroRef = useRef<HTMLElement>(null)
+  const auraRef = useRef<HTMLDivElement>(null)
+  const ladderRef = useRef<HTMLDivElement>(null)
+
+  // Ladder animations
+  const [ladderVisible, setLadderVisible] = useState(false)
+  const [percentages, setPercentages] = useState([0, 0, 0, 0])
+  const targetPercentages = [60, 72, 80, 85]
+  const [hoveredRung, setHoveredRung] = useState<number | null>(null)
+
+  // Glow cursor effect
+  useEffect(() => {
+    const hero = heroRef.current
+    const aura = auraRef.current
+    if (!hero || !aura || window.innerWidth < 768) return
+
+    // Brand colour stops the aura cycles through
+    const C1 = [[232, 181, 71], [208, 0, 0], [240, 140, 60]]  // inner: gold, red, amber
+    const C2 = [[208, 0, 0], [232, 181, 71], [120, 40, 10]]    // outer: red, gold, deep
+
+    let tx = 50, ty = 50, mx = 50, my = 50, phase = 0, lastMove = Date.now()
+
+    function lerp(a: number, b: number, f: number): number {
+      return a + (b - a) * f
+    }
+
+    function mix(arr: number[][], p: number): number[] {
+      const n = arr.length
+      const i = Math.floor(p) % n
+      const j = (i + 1) % n
+      const f = p - Math.floor(p)
+      return [
+        Math.round(lerp(arr[i][0], arr[j][0], f)),
+        Math.round(lerp(arr[i][1], arr[j][1], f)),
+        Math.round(lerp(arr[i][2], arr[j][2], f))
+      ]
+    }
+
+    const onMove = (e: MouseEvent) => {
+      const rect = hero.getBoundingClientRect()
+      tx = ((e.clientX - rect.left) / rect.width) * 100
+      ty = ((e.clientY - rect.top) / rect.height) * 100
+      lastMove = Date.now()
+    }
+
+    function loop() {
+      if (!aura) return
+
+      mx += (tx - mx) * 0.12
+      my += (ty - my) * 0.12
+
+      const moving = Date.now() - lastMove < 120
+      phase += moving ? 0.012 : 0.004
+
+      const c1 = mix(C1, phase)
+      const c2 = mix(C2, phase * 0.8 + 0.3)
+
+      aura.style.setProperty('--mx', mx.toFixed(1) + '%')
+      aura.style.setProperty('--my', my.toFixed(1) + '%')
+      aura.style.setProperty('--c1', c1.join(','))
+      aura.style.setProperty('--c2', c2.join(','))
+
+      requestAnimationFrame(loop)
+    }
+
+    hero.addEventListener('mousemove', onMove)
+    const rafId = requestAnimationFrame(loop)
+
+    return () => {
+      hero.removeEventListener('mousemove', onMove)
+      cancelAnimationFrame(rafId)
+    }
+  }, [])
+
+  // Ladder intersection observer and counting animation
+  useEffect(() => {
+    const ladder = ladderRef.current
+    if (!ladder) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setLadderVisible(true)
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+
+    observer.observe(ladder)
+    return () => observer.disconnect()
+  }, [])
+
+  // Counting animation
+  useEffect(() => {
+    if (!ladderVisible) return
+
+    const duration = 1500 // 1.5 seconds total animation
+    const startTime = Date.now()
+
+    function animate() {
+      const elapsed = Date.now() - startTime
+      const progress = Math.min(elapsed / duration, 1)
+
+      // Easing function for smooth counting
+      const easeOut = 1 - Math.pow(1 - progress, 3)
+
+      setPercentages(
+        targetPercentages.map((target) => Math.floor(target * easeOut))
+      )
+
+      if (progress < 1) {
+        requestAnimationFrame(animate)
+      }
+    }
+
+    animate()
+  }, [ladderVisible])
 
   return (
     <>
@@ -22,7 +141,8 @@ export default function RAGPage() {
       <Header />
       <main style={{ ['--svc-accent' as string]: 'rgba(42,47,54,0.5)', ['--svc-accent-solid' as string]: '#E8B547' }}>
 
-        <section className="svc-hero">
+        <section className="svc-hero" ref={heroRef}>
+          <div className="svc-hero__aura" ref={auraRef} aria-hidden="true"></div>
           <div className="svc-hero__bg"></div>
           <div className="svc-hero__grid-lines"></div>
           <div className="container">
@@ -33,7 +153,7 @@ export default function RAGPage() {
                 <span>RAG &amp; Knowledge Systems</span>
               </div>
               <div className="svc-hero__band"><span className="dot"></span>AI · Osciva · 06</div>
-              <h1>Chat with your knowledge — <em>and actually trust</em> the answer.</h1>
+              <h1>Chat with your knowledge <em>and actually trust</em> the answer.</h1>
               <p className="svc-hero__lede">Retrieval systems grounded in your documents, contracts, and policies. Cited, permission-aware, and honest about what they don't know — built to clear the 85%+ accuracy bar real businesses need.</p>
               <div className="svc-hero__actions">
                 <a href="/quote" className="btn btn--red btn--lg">Request a quote <span className="arrow">↗</span></a>
@@ -69,26 +189,46 @@ export default function RAGPage() {
               <h2 className="svc-sec__title">Climbing past the <em>60% ceiling</em>.</h2>
               <p className="svc-sec__intro">Every shortcut tops out where a toy stops being useful. Here's how each technique we add lifts real-world accuracy.</p>
             </div>
-            <div className="ladder">
-              <div className="ladder__rung">
-                <div className="ladder__pct">~60%</div>
+            <div className="ladder" ref={ladderRef}>
+              <div
+                className={`ladder__rung${ladderVisible ? ' is-visible' : ''}${hoveredRung === 0 ? ' is-hovered' : ''}`}
+                style={{ transitionDelay: ladderVisible ? '0ms' : '0ms' }}
+                onMouseEnter={() => setHoveredRung(0)}
+                onMouseLeave={() => setHoveredRung(null)}
+              >
+                <div className="ladder__pct">{ladderVisible ? `~${percentages[0]}%` : '~0%'}</div>
                 <div className="ladder__label"><h4>Naïve "embed &amp; retrieve"</h4><p>Top-K chunks from a vector DB, straight to the model. The afternoon demo.</p></div>
-                <div className="ladder__bar"><i style={{ width: '60%' }}></i></div>
+                <div className="ladder__bar"><i style={{ width: `${ladderVisible ? percentages[0] : 0}%` }}></i></div>
               </div>
-              <div className="ladder__rung">
-                <div className="ladder__pct">~72%</div>
+              <div
+                className={`ladder__rung${ladderVisible ? ' is-visible' : ''}${hoveredRung === 1 ? ' is-hovered' : ''}`}
+                style={{ transitionDelay: ladderVisible ? '150ms' : '0ms' }}
+                onMouseEnter={() => setHoveredRung(1)}
+                onMouseLeave={() => setHoveredRung(null)}
+              >
+                <div className="ladder__pct">{ladderVisible ? `~${percentages[1]}%` : '~0%'}</div>
                 <div className="ladder__label"><h4>+ Content-aware chunking</h4><p>Split by clause, table, and section — not blind character counts.</p></div>
-                <div className="ladder__bar"><i style={{ width: '72%' }}></i></div>
+                <div className="ladder__bar"><i style={{ width: `${ladderVisible ? percentages[1] : 0}%` }}></i></div>
               </div>
-              <div className="ladder__rung">
-                <div className="ladder__pct">~80%</div>
+              <div
+                className={`ladder__rung${ladderVisible ? ' is-visible' : ''}${hoveredRung === 2 ? ' is-hovered' : ''}`}
+                style={{ transitionDelay: ladderVisible ? '300ms' : '0ms' }}
+                onMouseEnter={() => setHoveredRung(2)}
+                onMouseLeave={() => setHoveredRung(null)}
+              >
+                <div className="ladder__pct">{ladderVisible ? `~${percentages[2]}%` : '~0%'}</div>
                 <div className="ladder__label"><h4>+ Hybrid retrieval</h4><p>Semantic search plus keyword (BM25) so names, dates, and IDs land.</p></div>
-                <div className="ladder__bar"><i style={{ width: '80%' }}></i></div>
+                <div className="ladder__bar"><i style={{ width: `${ladderVisible ? percentages[2] : 0}%` }}></i></div>
               </div>
-              <div className="ladder__rung ladder__rung--peak">
-                <div className="ladder__pct">85%+</div>
+              <div
+                className={`ladder__rung ladder__rung--peak${ladderVisible ? ' is-visible' : ''}${hoveredRung === 3 ? ' is-hovered' : ''}`}
+                style={{ transitionDelay: ladderVisible ? '450ms' : '0ms' }}
+                onMouseEnter={() => setHoveredRung(3)}
+                onMouseLeave={() => setHoveredRung(null)}
+              >
+                <div className="ladder__pct">{ladderVisible ? `${percentages[3]}%+` : '0%+'}</div>
                 <div className="ladder__label"><h4>+ Reranking &amp; evals</h4><p>A reranker filters false positives; evals catch drift. Production-grade.</p></div>
-                <div className="ladder__bar"><i style={{ width: '90%' }}></i></div>
+                <div className="ladder__bar"><i style={{ width: `${ladderVisible ? percentages[3] : 0}%` }}></i></div>
               </div>
             </div>
           </div>
