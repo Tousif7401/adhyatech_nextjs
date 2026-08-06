@@ -3885,7 +3885,7 @@
   padding: 20px 24px; border-radius: var(--radius-lg);
   background: var(--coal); border: 1px solid var(--line-d);
 }
-.ladder__rung--peak { border-color: var(--brand-gold); background: linear-gradient(120deg, var(--coal), rgba(232,181,71,0.06)); }
+.ladder__rung--peak { background: var(--coal); }
 .ladder__pct {
   font-family: var(--f-display); font-size: 1.5rem; font-weight: 800;
   color: rgba(245,242,234,0.55); letter-spacing: -0.02em;
@@ -3894,7 +3894,34 @@
 .ladder__label h4 { font-family: var(--f-display); font-size: 1.05rem; font-weight: 700; color: #F5F2EA; margin-bottom: 4px; }
 .ladder__label p { font-size: 0.86rem; line-height: 1.5; color: rgba(245,242,234,0.6); }
 .ladder__bar { width: 120px; height: 8px; border-radius: 100px; background: var(--mist); overflow: hidden; }
-.ladder__bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--brand-slate-3), var(--brand-gold)); border-radius: 100px; }
+.ladder__bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--brand-slate-3), var(--brand-gold)); border-radius: 100px; transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* Ladder animations */
+.ladder__rung {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.ladder__rung.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ladder__rung.is-hovered {
+  border-color: var(--brand-gold) !important;
+  background: linear-gradient(120deg, var(--coal), rgba(232,181,71,0.12)) !important;
+  box-shadow: 0 0 30px rgba(232,181,71,0.15), 0 0 60px rgba(232,181,71,0.08) !important;
+  transform: scale(1.02);
+  z-index: 1;
+  transition: box-shadow 0.2s ease-out, border-color 0.2s ease-out, background 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.ladder__rung--peak.is-hovered {
+  border-color: var(--brand-gold) !important;
+  background: linear-gradient(120deg, rgba(232,181,71,0.06), rgba(232,181,71,0.18)) !important;
+  box-shadow: 0 0 40px rgba(232,181,71,0.25), 0 0 80px rgba(232,181,71,0.12) !important;
+}
 
 /* Voice AI: language panel */
 .lang-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 36px; }
