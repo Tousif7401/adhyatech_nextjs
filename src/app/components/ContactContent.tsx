@@ -4,12 +4,25 @@ import { useState } from "react";
 import { sendContact } from "@/lib/contact";
 import { useSettings } from "../context/SettingsContext";
 
+interface FormErrors {
+    name?: string;
+    email?: string;
+    company?: string;
+    phone?: string;
+    message?: string;
+    consent?: string;
+}
 
 export default function ContactContent() {
 
     const settings = useSettings();
 
     const [submitted, setSubmitted] = useState(false);
+    const [errors, setErrors] = useState<FormErrors>({});
+    const [touched, setTouched] = useState<Record<string, boolean>>({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showErrorModal, setShowErrorModal] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -20,13 +33,104 @@ export default function ContactContent() {
         consent: false,
     });
 
+    const validateField = (name: string, value: string | boolean): string | undefined => {
+        switch (name) {
+            case 'name':
+                if (!value || typeof value !== 'string' || value.trim().length < 2) {
+                    return 'Name must be at least 2 characters';
+                }
+                if (value.trim().length > 100) {
+                    return 'Name must be less than 100 characters';
+                }
+                // Only allow letters, spaces, hyphens, apostrophes, and periods
+                const nameRegex = /^[a-zA-ZÀ-ſ\s\-\.\']{2,}$/;
+                if (!nameRegex.test(value.trim())) {
+                    return 'Name can only contain letters (no numbers)';
+                }
+                break;
+
+            case 'email':
+                if (!value || typeof value !== 'string') {
+                    return 'Email is required';
+                }
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value.trim())) {
+                    return 'Please enter a valid email address';
+                }
+                break;
+
+            case 'company':
+                if (value && typeof value === 'string' && value.trim()) {
+                    if (value.trim().length < 2) {
+                        return 'Company name must be at least 2 characters';
+                    }
+                    if (value.trim().length > 100) {
+                        return 'Company name must be less than 100 characters';
+                    }
+                }
+                break;
+
+            case 'phone':
+                if (value && typeof value === 'string' && value.trim()) {
+                    const phoneRegex = /^[\d\s\-\+\(\)]{10,}$/;
+                    const digitsOnly = value.replace(/[^\d]/g, ''); // Extract just the digits
+
+                    if (!phoneRegex.test(value.trim())) {
+                        return 'Please enter a valid phone number (min 10 digits)';
+                    }
+                    if (digitsOnly.length > 15) {
+                        return 'Phone number cannot exceed 15 digits';
+                    }
+                }
+                break;
+
+            case 'message':
+                if (!value || typeof value !== 'string' || value.trim().length < 10) {
+                    return 'Message must be at least 10 characters';
+                }
+                if (value.trim().length > 2000) {
+                    return 'Message must be less than 2000 characters';
+                }
+                break;
+
+            case 'consent':
+                if (!value) {
+                    return 'You must consent to continue';
+                }
+                break;
+        }
+        return undefined;
+    };
+
+    const validateForm = (): boolean => {
+        const newErrors: FormErrors = {};
+
+        newErrors.name = validateField('name', formData.name);
+        newErrors.email = validateField('email', formData.email);
+        newErrors.phone = validateField('phone', formData.phone);
+        newErrors.message = validateField('message', formData.message);
+        newErrors.consent = validateField('consent', formData.consent);
+
+        setErrors(newErrors);
+        return !Object.values(newErrors).some(error => error !== undefined);
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Validate all fields
+        if (!validateForm()) {
+            return;
+        }
+
+        setIsSubmitting(true);
 
         try {
             await sendContact(formData);
 
             setSubmitted(true);
+            setErrors({});
+            setTouched({});
 
             setFormData({
                 name: "",
@@ -40,15 +144,38 @@ export default function ContactContent() {
 
         } catch (err) {
             console.error(err);
-            alert("Failed to send message.");
+            setErrorMessage("Failed to send message. Please check your connection and try again.");
+            setShowErrorModal(true);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value, type } = e.target
         const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined
-        setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }))
-    }
+        const newValue: string | boolean = type === 'checkbox' ? checked! : value;
+
+        setFormData(prev => ({ ...prev, [name]: newValue }));
+
+        // Validate on change if field was already touched
+        if (touched[name]) {
+            const error = validateField(name, newValue);
+            setErrors(prev => ({ ...prev, [name]: error }));
+        }
+    };
+
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name } = e.target;
+        setTouched(prev => ({ ...prev, [name]: true }));
+
+        const value = e.target.type === 'checkbox'
+            ? (e.target as HTMLInputElement).checked
+            : e.target.value;
+
+        const error = validateField(name, value);
+        setErrors(prev => ({ ...prev, [name]: error }));
+    };
 
     return (
         <>
@@ -119,6 +246,25 @@ export default function ContactContent() {
                                     <div className="form-success__icon">✓</div>
                                     <h3>Got it. We'll be in touch.</h3>
                                     <p>Thanks for reaching out — we'll come back within one business day with next steps. If it's urgent, WhatsApp is the fastest path.</p>
+                                    <div className="form-success__actions">
+                                        <button
+                                            type="button"
+                                            className="form-submit"
+                                            onClick={() => setSubmitted(false)}
+                                        >
+                                            Send another message
+                                            <span className="arrow">↗</span>
+                                        </button>
+                                        <a
+                                            href="https://wa.me/message/CZWJEKQ556UZI1"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="form-submit form-submit--secondary"
+                                        >
+                                            WhatsApp us
+                                            <span className="arrow">↗</span>
+                                        </a>
+                                    </div>
                                 </div>
                             ) : (
                                 <>
@@ -127,27 +273,89 @@ export default function ContactContent() {
                                         <h3>Tell us about <em>your project</em>.</h3>
                                     </div>
 
-                                    <form onSubmit={handleSubmit}>
+                                    <form onSubmit={handleSubmit} noValidate>
                                         <div className="form-grid">
                                             <div className="form-field">
                                                 <label htmlFor="name">Name <span className="req">*</span></label>
-                                                <input id="name" name="name" type="text" required value={formData.name} onChange={handleChange} placeholder="Your full name" />
+                                                <input
+                                                    id="name"
+                                                    name="name"
+                                                    type="text"
+                                                    value={formData.name}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    placeholder="Your full name"
+                                                    className={errors.name && touched.name ? 'form-field--error' : ''}
+                                                    aria-invalid={errors.name && touched.name ? 'true' : 'false'}
+                                                    aria-describedby={errors.name && touched.name ? 'name-error' : undefined}
+                                                />
+                                                {errors.name && touched.name && (
+                                                    <span id="name-error" className="form-field__error">{errors.name}</span>
+                                                )}
                                             </div>
                                             <div className="form-field">
                                                 <label htmlFor="email">Work email <span className="req">*</span></label>
-                                                <input id="email" name="email" type="email" required value={formData.email} onChange={handleChange} placeholder="you@company.com" />
+                                                <input
+                                                    id="email"
+                                                    name="email"
+                                                    type="email"
+                                                    value={formData.email}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    placeholder="you@company.com"
+                                                    className={errors.email && touched.email ? 'form-field--error' : ''}
+                                                    aria-invalid={errors.email && touched.email ? 'true' : 'false'}
+                                                    aria-describedby={errors.email && touched.email ? 'email-error' : undefined}
+                                                />
+                                                {errors.email && touched.email && (
+                                                    <span id="email-error" className="form-field__error">{errors.email}</span>
+                                                )}
                                             </div>
                                             <div className="form-field">
                                                 <label htmlFor="company">Company</label>
-                                                <input id="company" name="company" type="text" value={formData.company} onChange={handleChange} placeholder="Where you work" />
+                                                <input
+                                                    id="company"
+                                                    name="company"
+                                                    type="text"
+                                                    value={formData.company}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    placeholder="Where you work"
+                                                    className={errors.company && touched.company ? 'form-field--error' : ''}
+                                                    aria-invalid={errors.company && touched.company ? 'true' : 'false'}
+                                                    aria-describedby={errors.company && touched.company ? 'company-error' : undefined}
+                                                />
+                                                {errors.company && touched.company && (
+                                                    <span id="company-error" className="form-field__error">{errors.company}</span>
+                                                )}
                                             </div>
                                             <div className="form-field">
                                                 <label htmlFor="phone">Phone / WhatsApp</label>
-                                                <input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder="+91 …" />
+                                                <input
+                                                    id="phone"
+                                                    name="phone"
+                                                    type="tel"
+                                                    value={formData.phone}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    placeholder="+91 …"
+                                                    className={errors.phone && touched.phone ? 'form-field--error' : ''}
+                                                    aria-invalid={errors.phone && touched.phone ? 'true' : 'false'}
+                                                    aria-describedby={errors.phone && touched.phone ? 'phone-error' : undefined}
+                                                />
+                                                {errors.phone && touched.phone && (
+                                                    <span id="phone-error" className="form-field__error">{errors.phone}</span>
+                                                )}
                                             </div>
                                             <div className="form-field form-field--full">
                                                 <label htmlFor="inquiry">What's this about? <span className="req">*</span></label>
-                                                <select id="inquiry" name="inquiry" required value={formData.inquiry} onChange={handleChange}>
+                                                <select
+                                                    id="inquiry"
+                                                    name="inquiry"
+                                                    value={formData.inquiry}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                >
                                                     <option value="new-project">A new project</option>
                                                     <option value="existing-build">Improving an existing build</option>
                                                     <option value="alumnyo">Alumnyo (alumni SaaS)</option>
@@ -159,22 +367,53 @@ export default function ContactContent() {
                                             </div>
                                             <div className="form-field form-field--full">
                                                 <label htmlFor="message">Your message <span className="req">*</span></label>
-                                                <textarea id="message" name="message" required value={formData.message} onChange={handleChange} placeholder="Briefly — what are you trying to build, what's the rough timeline, what's getting in the way?"></textarea>
+                                                <textarea
+                                                    id="message"
+                                                    name="message"
+                                                    value={formData.message}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    placeholder="Briefly — what are you trying to build, what's the rough timeline, what's getting in the way?"
+                                                    className={errors.message && touched.message ? 'form-field--error' : ''}
+                                                    aria-invalid={errors.message && touched.message ? 'true' : 'false'}
+                                                    aria-describedby={errors.message && touched.message ? 'message-error' : undefined}
+                                                ></textarea>
                                                 <span className="form-field__hint">A few sentences is plenty. We'll ask for more on the call.</span>
+                                                {errors.message && touched.message && (
+                                                    <span id="message-error" className="form-field__error">{errors.message}</span>
+                                                )}
                                             </div>
                                             <div className="form-field form-field--full">
-                                                <label className="form-consent">
-                                                    <input type="checkbox" name="consent" required checked={formData.consent} onChange={handleChange} />
+                                                <label className={`form-consent ${errors.consent && touched.consent ? 'form-consent--error' : ''}`}>
+                                                    <input
+                                                        type="checkbox"
+                                                        name="consent"
+                                                        checked={formData.consent}
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                    />
                                                     <span>I consent to Adyatech contacting me about this enquiry. I understand my details will be handled per the <a href="/privacy">privacy policy</a>.</span>
                                                 </label>
+                                                {errors.consent && touched.consent && (
+                                                    <span className="form-field__error">{errors.consent}</span>
+                                                )}
                                             </div>
                                         </div>
 
                                         <div className="form-actions">
                                             <span className="form-actions__note">→ We respond within 1 business day</span>
-                                            <button type="submit" className="form-submit">
-                                                Send message
-                                                <span className="arrow">↗</span>
+                                            <button type="submit" className="form-submit" disabled={isSubmitting}>
+                                                {isSubmitting ? (
+                                                    <>
+                                                        <span className="form-submit__spinner"></span>
+                                                        Sending...
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        Send message
+                                                        <span className="arrow">↗</span>
+                                                    </>
+                                                )}
                                             </button>
                                         </div>
                                     </form>
@@ -185,6 +424,36 @@ export default function ContactContent() {
                     </div>
                 </div>
             </section>
+
+            {/* Error Modal */}
+            {showErrorModal && (
+                <div className="error-modal" onClick={() => setShowErrorModal(false)}>
+                    <div className="error-modal__content" onClick={(e) => e.stopPropagation()}>
+                        <div className="error-modal__icon">⚠</div>
+                        <h3>Oops! Something went wrong</h3>
+                        <p>{errorMessage}</p>
+                        <div className="error-modal__actions">
+                            <button
+                                type="button"
+                                className="form-submit"
+                                onClick={() => setShowErrorModal(false)}
+                            >
+                                Try again
+                                <span className="arrow">↗</span>
+                            </button>
+                            <a
+                                href="https://wa.me/message/CZWJEKQ556UZI1"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="form-submit form-submit--secondary"
+                            >
+                                Contact via WhatsApp
+                                <span className="arrow">↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     )
 }
