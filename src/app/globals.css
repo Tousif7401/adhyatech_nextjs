@@ -1418,6 +1418,7 @@ HERO+MOTION GRAPHICS → HTML SECTION 3 Layered: gradient mesh+particles+cursor 
   gap: 60px;
   align-items: end;
   margin-bottom: 120px;
+  padding-top: 40px;
 }
 
 .hero__title {
