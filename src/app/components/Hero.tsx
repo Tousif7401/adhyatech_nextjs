@@ -178,7 +178,7 @@ export default function Hero({
                     <BrowserFrame
                       image={project.image}
                       title={project.title}
-                      siteUrl={project.site_url}
+                      siteUrl={project.external_url}
                       isLive={project.is_live}
                       ratio="16/10"
                     />
