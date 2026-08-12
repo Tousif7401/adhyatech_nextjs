@@ -153,11 +153,10 @@ export default function Header() {
                   <span className="dropdown__icon">03</span>
                   <span className="dropdown__text"><strong>Clients</strong><span>400+ organisations across 14 countries</span></span>
                 </Link></li> */}
-                {/* Government Projects - TEMPORARILY DISABLED - Will be uncommented later in future */}
-                {/* <li><Link href="/government">
+                <li><Link href="/government">
                   <span className="dropdown__icon">★</span>
                   <span className="dropdown__text"><strong>Government Projects</strong><span>Karnataka State Govt empanelled vendor</span></span>
-                </Link></li> */}
+                </Link></li>
                 <li><Link href="/careers">
                   <span className="dropdown__icon">04</span>
                   <span className="dropdown__text"><strong>Careers</strong><span>We're hiring senior engineers & designers</span></span>
