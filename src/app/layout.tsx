@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { SettingsProvider } from "./context/SettingsContext";
 import { getSettings } from "@/lib/settings";
-import Script from 'next/script';
+import CookieConsent from "@/components/CookieConsent";
 
 
 import './globals.css'
@@ -46,41 +46,7 @@ export default async function RootLayout({
           {children}
         </SettingsProvider>
 
-        {/* Google Analytics (GA4) */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-9HYY2ZVZGW" strategy="afterInteractive" />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-9HYY2ZVZGW');
-          `}
-        </Script>
-
-        {/* Meta Pixel Code */}
-        <Script id="meta-pixel" strategy="afterInteractive">
-          {`
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '1004575129251764');
-            fbq('track', 'PageView');
-          `}
-        </Script>
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: 'none' }}
-            src="https://www.facebook.com/tr?id=1004575129251764&ev=PageView&noscript=1"
-          />
-        </noscript>
-        {/* End Meta Pixel Code */}
+        <CookieConsent />
       </body>
     </html>
   )

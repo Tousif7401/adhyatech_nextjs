@@ -246,18 +246,53 @@ const sections: LegalSection[] = [
         <strong>Email:</strong> hello@adyatech.com<br />
         <strong>Website:</strong> www.adyatech.com</p>
         <hr />
-        <p><strong>Cookie Notice for Website Banner</strong></p>
-        <p>The following short notice is recommended for your cookie consent banner:</p>
-        <p><em>"We use cookies to improve your browsing experience, analyze website traffic, remember your preferences, and enhance our services. By clicking "Accept", you agree to our use of cookies as described in our Cookie Policy. You can manage your cookie preferences at any time through your browser settings."</em></p>
-        <p><strong>Recommended Buttons:</strong></p>
+        <p><strong>How We Use Cookies on This Website</strong></p>
+        <p>Our website uses the following categories of cookies:</p>
         <ul>
-          <li>Accept All</li>
-          <li>Reject Non-Essential</li>
-          <li>Cookie Preferences</li>
-          <li>Learn More</li>
+          <li><strong>Necessary Cookies:</strong> Required for the website to function properly (always active)</li>
+          <li><strong>Analytics Cookies:</strong> Google Analytics for understanding website traffic and usage patterns</li>
+          <li><strong>Marketing Cookies:</strong> Meta Pixel for measuring advertising campaign effectiveness</li>
+          <li><strong>Functional Cookies:</strong> Optional website functionality and user preferences</li>
         </ul>
-        <p><strong>Best Practice for Adyatech</strong></p>
-        <p>Since your website includes enquiry forms, quote requests, analytics, and may use tools such as Google Analytics, Google Tag Manager, Meta Pixel, WhatsApp, YouTube, Google Maps, and future AI integrations, displaying a cookie consent banner before loading non-essential cookies is recommended. This provides visitors with greater transparency and aligns with modern privacy expectations for clients in India and international markets.</p>
+        <p><strong>Your Cookie Choices</strong></p>
+        <p>When you first visit our website, you will see a cookie consent banner that allows you to:</p>
+        <ul>
+          <li><strong>Accept All:</strong> Enable all cookie categories</li>
+          <li><strong>Reject Non-Essential:</strong> Keep only necessary cookies active</li>
+          <li><strong>Manage Preferences:</strong> Choose which categories to enable individually</li>
+        </ul>
+        <p>You can change your cookie preferences at any time by clicking the <strong>"Cookie Settings"</strong> button in the footer of any page on our website.</p>
+        <p><strong>Google Analytics</strong></p>
+        <p>We use Google Analytics to understand how visitors use our website. Google Analytics collects anonymous information such as:</p>
+        <ul>
+          <li>Number of visitors</li>
+          <li>Popular pages and navigation paths</li>
+          <li>Time spent on pages</li>
+          <li>Device types and browser information</li>
+        </ul>
+        <p>Google Analytics only loads if you accept Analytics Cookies in your cookie preferences.</p>
+        <p><strong>Meta Pixel</strong></p>
+        <p>We use Meta (Facebook) Pixel to measure the effectiveness of our advertising campaigns on Facebook and Instagram. This helps us understand how users discover our website and engage with our marketing content.</p>
+        <p>Meta Pixel only loads if you accept Marketing Cookies in your cookie preferences.</p>
+        <p><strong>Withdrawing Consent</strong></p>
+        <p>To withdraw or change your cookie consent at any time:</p>
+        <ul>
+          <li>Click <strong>"Cookie Settings"</strong> in the footer of any page</li>
+          <li>Toggle your preferred cookie categories on or off</li>
+          <li>Click <strong>"Save Preferences"</strong> to apply your changes</li>
+        </ul>
+        <p>You can also manage cookies through your web browser settings, though this may affect website functionality.</p>
+        <p><strong>Cookie Storage</strong></p>
+        <p>Your cookie preferences are stored locally on your device for 30 days. After this period, you will be asked to review your cookie preferences again.</p>
+        <p><strong>International Data Transfers</strong></p>
+        <p>When you accept Analytics or Marketing cookies, certain information may be processed by third-party service providers located outside India. These providers include:</p>
+        <ul>
+          <li><strong>Google LLC</strong> (United States) — for Google Analytics</li>
+          <li><strong>Meta Platforms, Inc.</strong> (United States) — for Meta Pixel</li>
+        </ul>
+        <p>These services operate under their own privacy policies and data protection frameworks. By enabling these cookie categories, you consent to such data transfers in accordance with their respective policies.</p>
+        <p><strong>Legal Framework</strong></p>
+        <p>Our cookie consent system is designed to comply with applicable privacy laws, including India's Digital Personal Data Protection Act, 2023 (DPDP Act) and the Digital Personal Data Protection Rules, 2025. We provide clear, granular choices and mechanisms for managing and withdrawing your consent.</p>
       </>
     ),
   },

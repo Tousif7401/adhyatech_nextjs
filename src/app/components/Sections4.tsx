@@ -276,6 +276,13 @@ export function Footer() {
     <Link href="/terms">Terms</Link>
     <Link href="/privacy">Privacy</Link>
     <Link href="/cookies">Cookies</Link>
+    <button
+      type="button"
+      className="footer__link-btn"
+      onClick={() => window.dispatchEvent(new Event('open-cookie-settings'))}
+    >
+      Cookie Settings
+    </button>
     <Link href="/disclaimer">Disclaimer</Link>
     <Link href="/refund">Refund</Link>
   </div>
