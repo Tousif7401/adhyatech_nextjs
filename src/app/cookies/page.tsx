@@ -244,6 +244,7 @@ const sections: LegalSection[] = [
         Karnataka, India</p>
         <p><strong>Phone:</strong> +91 8392 359873 / +91 98868 53308<br />
         <strong>Email:</strong> hello@adyatech.com<br />
+        <strong>Privacy Email:</strong> privacy@adyatech.com<br />
         <strong>Website:</strong> www.adyatech.com</p>
         <hr />
         <p><strong>How We Use Cookies on This Website</strong></p>
