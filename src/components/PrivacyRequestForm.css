@@ -1,0 +1,273 @@
+.privacy-request-form {
+  /* Form wrapper */
+}
+
+/* ── Stepper ── */
+.privacy-request-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.privacy-request-stepper > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.privacy-request-stepper .quote-stepper__step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+}
+
+.privacy-request-stepper .quote-stepper__num {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--coal);
+  border: 1px solid var(--line-d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.86rem;
+  transition: all 0.3s;
+}
+
+.privacy-request-stepper .is-active .quote-stepper__num {
+  background: var(--brand-slate);
+  border-color: var(--brand-slate);
+  color: #fff;
+}
+
+.privacy-request-stepper .is-done .quote-stepper__num {
+  background: var(--brand-gold);
+  border-color: var(--brand-gold);
+  color: var(--brand-slate-3);
+}
+
+.privacy-request-stepper .quote-stepper__label {
+  color: var(--fg-mute);
+}
+
+.privacy-request-stepper .is-active .quote-stepper__label {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.privacy-request-stepper .is-done .quote-stepper__label {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.privacy-request-stepper .quote-stepper__line {
+  width: 32px;
+  height: 1px;
+  background: var(--line-d);
+}
+
+/* ── Card ── */
+.privacy-request-card {
+  background: var(--coal);
+  border-radius: 12px;
+  padding: 32px;
+  border: 1px solid var(--line-d);
+}
+
+.privacy-request-card__head {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.privacy-request-card__head h2 {
+  font-family: var(--f-display);
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  color: var(--fg);
+  margin: 8px 0;
+  letter-spacing: -0.02em;
+}
+
+.privacy-request-card__head p {
+  color: var(--fg-mute);
+  font-size: 1rem;
+}
+
+/* ── Steps ── */
+.privacy-request-step {
+  display: none;
+}
+
+.privacy-request-step.is-active {
+  display: block;
+}
+
+/* ── Request Type Cards ── */
+.request-type-card {
+  border: 1px solid var(--line-d);
+  background: transparent;
+}
+
+.request-type-card:hover {
+  border-color: var(--brand-gold);
+}
+
+.request-type-card.is-checked {
+  border-color: var(--brand-gold);
+  background: rgba(232, 181, 71, 0.05);
+}
+
+/* ── Success State ── */
+.privacy-request-success {
+  text-align: center;
+  padding: 64px 32px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.privacy-request-success .form-success__icon {
+  background: var(--brand-gold);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 32px;
+}
+
+.privacy-request-success h2 {
+  font-family: var(--f-display);
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+
+.privacy-request-success p {
+  color: var(--fg-mute);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+/* ── Review Section ── */
+.privacy-request-review {
+  padding: 24px;
+  background: rgba(245, 242, 234, 0.04);
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.privacy-request-review p {
+  color: var(--fg-mute);
+}
+
+.privacy-request-review strong {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+/* ── Navigation ── */
+.privacy-request-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line-d);
+}
+
+/* Back button - visible on dark background */
+.privacy-request-nav .quote-nav__back {
+  background: transparent;
+  border: 1px solid var(--brand-gold);
+  color: var(--brand-gold);
+  padding: 12px 22px;
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border-radius: 100px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.privacy-request-nav .quote-nav__back:hover {
+  background: rgba(232, 181, 71, 0.1);
+  border-color: #fff;
+  color: #fff;
+}
+
+.privacy-request-nav .quote-nav__back:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: var(--line-d);
+  color: var(--fg-mute);
+}
+
+/* Next/Submit button */
+.privacy-request-nav .quote-nav__next {
+  background: var(--brand-slate);
+  border: 1px solid var(--brand-slate);
+  color: #fff;
+  padding: 12px 24px;
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border-radius: 100px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.privacy-request-nav .quote-nav__next:hover {
+  background: #fff;
+  border-color: #fff;
+  color: var(--brand-slate);
+}
+
+.privacy-request-nav .quote-nav__next:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.privacy-request-nav .quote-nav__next span {
+  transition: transform 0.2s;
+}
+
+.privacy-request-nav .quote-nav__next:hover span {
+  transform: translateX(4px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .privacy-request-card {
+    padding: 24px;
+  }
+
+  .privacy-request-stepper {
+    gap: 4px;
+  }
+
+  .privacy-request-stepper .quote-stepper__label {
+    display: none;
+  }
+
+  .privacy-request-section {
+    padding: 32px 0;
+  }
+}

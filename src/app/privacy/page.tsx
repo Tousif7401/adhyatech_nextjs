@@ -318,8 +318,29 @@ const sections: LegalSection[] = [
     ),
   },
   {
+    id: 'dpdp-rights',
+    heading: 'DPDP Rights – How to Exercise Them',
+    body: (
+      <>
+        <p>Under India's Digital Personal Data Protection Act, 2023 (DPDP Act), you have specific rights regarding your personal data.</p>
+        <p><strong>Your Rights:</strong></p>
+        <ul>
+          <li><strong>Right to Access:</strong> Request a summary of your personal data and how it's processed</li>
+          <li><strong>Right to Correction:</strong> Request correction of inaccurate or incomplete data</li>
+          <li><strong>Right to Erasure:</strong> Request deletion of your data where legally permitted</li>
+          <li><strong>Right to Withdraw Consent:</strong> Withdraw previously given consent at any time</li>
+          <li><strong>Right to Grievance:</strong> File a complaint about how your data is handled</li>
+        </ul>
+        <p><strong>How to Exercise Your Rights:</strong></p>
+        <p>Use our <a href="/privacy-request">Privacy Request form</a> to exercise any of these rights. We will acknowledge your request within 7 days and respond within 30 days.</p>
+        <p><strong>Privacy Contact:</strong></p>
+        <p>For DPDP-related questions or requests, email us at <a href="mailto:privacy@adyatech.com">privacy@adyatech.com</a></p>
+      </>
+    ),
+  },
+  {
     id: 'contact',
-    heading: '16. Contact Us',
+    heading: '17. Contact Us',
     body: (
       <>
         <p>If you have any questions regarding this Privacy Policy or the way your personal information is handled, please contact us.</p>

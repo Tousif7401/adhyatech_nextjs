@@ -274,6 +274,7 @@ export function Footer() {
   <div className="footer__legal">
     <Link href="/terms">Terms</Link>
     <Link href="/privacy">Privacy</Link>
+    <Link href="/privacy-request">Privacy Request</Link>
     <Link href="/cookies">Cookies</Link>
     <button
       type="button"

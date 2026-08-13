@@ -142,9 +142,8 @@ export default function CookieConsent() {
       {showBanner && !showSettings && (
         <div className="cookie-banner">
           <div className="cookie-banner__inner container">
-            <div className="cookie-banner__content">
-              <div className="cookie-banner__icon">🍪</div>
-              <div className="cookie-banner__text">
+          <div className="cookie-banner__content">
+            <div className="cookie-banner__text">
                 <h2 className="cookie-banner__title">Your Privacy Matters</h2>
                 <p className="cookie-banner__description">
                   We use cookies to improve your experience, analyse traffic and
