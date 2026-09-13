@@ -6,9 +6,11 @@ import { LegacyBand, Marquee, Manifesto, Industries } from './components/Section
 import { Services, Work, Process } from './components/Sections2'
 import { Products, Alumnyo, Osciva, Impact, GovtBand, TechStack } from './components/Sections3'
 import { Testimonials, Insights, BigCTA, Footer } from './components/Sections4'
+import ChatWidget from './components/ChatWidget'
 import Link from "next/link";
 
 import { getHomeData } from "../lib/home";
+import type { HomeResponse } from "../lib/home";
 
 import type { Metadata } from "next";
 import { getSeo } from "../lib/seo";
@@ -34,15 +36,27 @@ export async function generateMetadata(): Promise<Metadata> {
     };
   } catch {
     return {
-      title: "Projects",
-      description: "Our Projects",
+      title: "Adyatech Solutions — Engineered for the Next Web · Ballari, IN",
+      description:
+        "Adyatech Solutions LLP — 16 years building custom web, software, AI & mobile experiences from Ballari for the world. 400+ clients including Karnataka State Government. Home of Osciva AI and Alumnyo.",
     };
   }
 }
 
+// // When the CMS is unreachable, render the static sections with empty data
+// // instead of failing the page.
+const EMPTY_HOME: HomeResponse = {
+  services: [],
+  projects: [],
+  hero_projects: [],
+  testimonials: [],
+  articles: [],
+  products: [],
+};
+
 export default async function Home() {
 
-  const home = await getHomeData();
+  const home = await getHomeData().catch(() => EMPTY_HOME);
 
   return (
     <>
@@ -70,6 +84,7 @@ export default async function Home() {
       </main>
       <Footer />
       <Link href="#contact" className="fab">Let's talk →</Link>
+      <ChatWidget />
     </>
   )
 }

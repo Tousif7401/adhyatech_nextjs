@@ -1,6 +1,7 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { SettingsProvider } from "./context/SettingsContext";
 import { getSettings } from "@/lib/settings";
+import type { SettingsResponse } from "@/types/setting";
 import CookieConsent from "@/components/CookieConsent";
 
 
@@ -11,15 +12,36 @@ import { cn } from "@/lib/utils";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
+// Canonical origin of the deployed site — used for metadataBase, OG URLs,
+// sitemap.xml and robots.txt. Override with NEXT_PUBLIC_SITE_URL if the
+// domain changes.
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://adyatech.com';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: 'Adyatech Solutions — Engineered for the Next Web · Ballari, IN',
   description: 'Adyatech Solutions LLP — 16 years building custom web, software, AI & mobile experiences from Ballari for the world. 400+ clients including Karnataka State Government. Home of Osciva AI and Alumnyo.',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
+  // Card type default; title/description/images are inherited from each
+  // page's openGraph metadata.
+  twitter: {
+    card: 'summary_large_image',
   },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+}
+
+// When the CMS is unreachable, render with empty settings instead of
+// failing the whole page.
+const FALLBACK_SETTINGS: SettingsResponse = {
+  phones: [],
+  emails: [],
+  addresses: [],
+  socials: [],
 }
 
 export default async function RootLayout({
@@ -28,7 +50,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
 
-  const settings = await getSettings();
+  const settings = await getSettings().catch(() => FALLBACK_SETTINGS);
 
   return (
     <html lang="en" data-theme="dark" suppressHydrationWarning className={cn("font-sans", inter.variable)}>
