@@ -191,17 +191,19 @@ export function Footer() {
               <img className="logo__img logo__img--light" src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/assets/logo/adyatech-logo-light.png`} alt="Adyatech Solutions LLP" />
             </Link>
             <p>A Ballari-born studio building custom web, software, AI and mobile experiences for ambitious teams worldwide. Home of Osciva AI and Alumnyo.</p>
-            <div className="footer__address">
-              <strong>Ballari Office</strong>
-              <a href={`${settings.addresses[0].link_url}`} target="_blank" rel="noopener noreferrer">
-                {settings.addresses[0].value.split("\n").map((line, index) => (
-                  <span key={index}>
-                    {line}
-                    <br />
-                  </span>
-                ))}
-              </a>
-            </div>
+            {settings.addresses[0] && (
+              <div className="footer__address">
+                <strong>Ballari Office</strong>
+                <a href={`${settings.addresses[0].link_url}`} target="_blank" rel="noopener noreferrer">
+                  {settings.addresses[0].value.split("\n").map((line, index) => (
+                    <span key={index}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
+                </a>
+              </div>
+            )}
             {submitted ? (
               <p className="footer__newsletter-success">
                 🎉 Thank you for subscribing! We'll keep you updated.

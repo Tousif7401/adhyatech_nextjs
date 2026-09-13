@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from 'react'
 import Link from "next/link";
+import { RouteLoader, useRouteLoader } from '@/components/RouteLoader'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [theme, setTheme] = useState('dark')
   const [menuOpen, setMenuOpen] = useState(false)
+  const { navigating, start } = useRouteLoader()
 
   useEffect(() => {
     const stored = localStorage.getItem('adyatech-theme')
@@ -38,8 +40,19 @@ export default function Header() {
     setMenuOpen(false)
   }
 
+  // any link inside the header — nav, mega-menu, mobile menu, CTAs —
+  // shows the route loader until the destination page renders
+  const handleHeaderNavClick = (e: React.MouseEvent) => {
+    const anchor = (e.target as HTMLElement).closest?.('a')
+    if (!anchor) return
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return // new-tab clicks
+    const href = anchor.getAttribute('href') ?? ''
+    if (!href.startsWith('/')) return // external links (wa.me) leave the app
+    start(href.split('#')[0]) // hash-only scrolls don't navigate
+  }
+
   return (
-    <header className={`header${scrolled ? ' is-scrolled' : ''}`} id="siteHeader">
+    <header className={`header${scrolled ? ' is-scrolled' : ''}`} id="siteHeader" onClick={handleHeaderNavClick}>
       <div className="container header__inner">
         <Link href="/" className="logo" aria-label="Adyatech Solutions home" style={{ marginLeft: '10px' }}>
           <img className="logo__img logo__img--light" src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/assets/logo/adyatech-logo-light.png`} alt="Adyatech Solutions LLP" />
@@ -246,6 +259,9 @@ export default function Header() {
           ))}
         </div>
       )}
+
+      {/* route-change loader — shown until the clicked page renders */}
+      <RouteLoader show={navigating} />
     </header>
   )
 }
